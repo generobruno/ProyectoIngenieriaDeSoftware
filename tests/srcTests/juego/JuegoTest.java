@@ -1,0 +1,4 @@
+package juego;
+
+class JuegoTest {
+}

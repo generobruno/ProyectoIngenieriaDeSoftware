@@ -1,0 +1,4 @@
+package graficos;
+
+class SpriteTest {
+}
