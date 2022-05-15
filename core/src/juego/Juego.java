@@ -170,6 +170,7 @@ public class Juego extends Canvas implements Runnable{
         Graphics g = estrategia.getDrawGraphics();
         // Se le pasa la imagen que debe dibujar
         g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
+
         // Luego de dibujar, se libera la memoria
         g.dispose();
 

@@ -1,5 +1,11 @@
 package graficos;
 
+import mapa.cuadro.Cuadro;
+
+/**
+ * Clase Pantalla. Esta clase se encarga de ensamblar todas las
+ * interfaces gráficas que hacen al juego.
+ */
 public final class Pantalla {
     // Ancho de la pantalla
     private final int ancho;
@@ -66,5 +72,27 @@ public final class Pantalla {
             } // Fin del for para X
         } // Fin del for para Y
     } // Fin de mostrar()
+
+    /**
+     * Método mostrarCuadro. Se encarga de dibujar un cuadro en la pantalla.
+     * @param compensacionX movimiento realizado en el eje X por el pj
+     * @param compensacionY movimiento realizado en el eje Y por el pj
+     * @param cuadro Cuadro que se dibujará
+     */
+    public void mostrarCuadro(int compensacionX, int compensacionY, Cuadro cuadro) {
+        for(int y = 0; y < cuadro.sprite.getLado(); y++) {
+            int posicionY = y + compensacionY;
+            for(int x = 0; x < cuadro.sprite.getLado(); x++) {
+                int posicionX = x + compensacionX;
+                // Condicional para que no se dibujen los cuadros fuera de la pantalla
+                if(posicionX < 0 || posicionX > ancho || posicionY < 0 || posicionY > alto) {
+                    break;
+                }
+                pixeles[posicionX + posicionY * ancho] =
+                        cuadro.sprite.pixeles[x + y * cuadro.sprite.getLado()];
+            } // Fin del for x
+        } // Fin del for y
+
+    }
 
 }

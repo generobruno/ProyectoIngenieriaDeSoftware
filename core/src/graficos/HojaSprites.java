@@ -16,6 +16,7 @@ public class HojaSprites {
     public final int[] pixeles;
 
     // Colección de hojas de sprites
+    //TODO CAMBIAR
     public static HojaSprites ejemplo1 = new HojaSprites("/texturas/texturasEj.png",128,192);
     // Fin de la colección
 

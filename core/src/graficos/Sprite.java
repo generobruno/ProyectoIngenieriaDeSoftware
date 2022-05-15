@@ -20,7 +20,8 @@ public final class Sprite {
     private final HojaSprites hojaSprites;
 
     // Colección de Sprites
-    public static Sprite ejPj1 = new Sprite(32,0,0,HojaSprites.ejemplo1);
+    // TODO CAMBIAR
+    public static final Sprite ejPj1 = new Sprite(32,0,0,HojaSprites.ejemplo1);
     // Fin de la colección
 
     /**
@@ -52,4 +53,11 @@ public final class Sprite {
         }
     }
 
+    /**
+     * Método getLado.
+     * @return devuelve el lado del Sprite.
+     */
+    public int getLado() {
+        return lado;
+    }
 }
