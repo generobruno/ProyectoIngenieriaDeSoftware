@@ -1,12 +1,15 @@
 package juego;
 
 import control.Teclado;
+import graficos.Pantalla;
 
 import javax.swing.JFrame;
 
-import java.awt.Canvas;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferInt;
 
 /**
  * Clase Juego (Ejecutable):
@@ -34,9 +37,20 @@ public class Juego extends Canvas implements Runnable{
     // Frames por segundo
     private static int fps = 0;
 
+    private static int x = 0;
+    private static int y = 0;
+
     private static JFrame ventana;
     private static Thread thread;
     private static Teclado teclado;
+    private static Pantalla pantalla;
+
+    // Imagen en buffer, en blanco
+    private static BufferedImage imagen =
+            new BufferedImage(ANCHO,ALTO,BufferedImage.TYPE_INT_RGB);
+    // Array de int con los pixeles de la imagen
+    private static int[] pixeles =
+            ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
     /**
      * Método Juego:
@@ -46,12 +60,14 @@ public class Juego extends Canvas implements Runnable{
     public Juego() {
         setPreferredSize(new Dimension(ANCHO, ALTO));
 
+        pantalla = new Pantalla(ANCHO, ALTO);
+
         teclado = new Teclado();
         addKeyListener(teclado);
 
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);
-        //Para que se cierre la ventana al hacer click en la cruz
+        //Para que se cierre la ventana al hacer clic en la cruz
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Para que el usuario no pueda cambiar el tamaño de la ventana
         ventana.setResizable(false);
@@ -110,16 +126,20 @@ public class Juego extends Canvas implements Runnable{
 
         // Acciones que se toman dependiendo de las teclas presionadas
         if (teclado.arriba){
-            System.out.println("ARRIBA");
+            //System.out.println("ARRIBA");
+            y++;
         }
         if (teclado.abajo){
-            System.out.println("ABAJO");
+            //System.out.println("ABAJO");
+            y--;
         }
         if (teclado.izquierda){
-            System.out.println("IZQUIERDA");
+            //System.out.println("IZQUIERDA");
+            x++;
         }
         if (teclado.derecha){
-            System.out.println("DERECHA");
+            //System.out.println("DERECHA");
+            x--;
         }
 
         aps++;
@@ -130,7 +150,31 @@ public class Juego extends Canvas implements Runnable{
      * Muestra el juego en pantalla, aumentando la cantidad de frames
      * por segundo mostrados.
      */
-    private void mostrar(){
+    private void mostrar() {
+        // Se crea un buffer, es decir, un espacio de memoria
+        // donde guardamos las imágenes
+        BufferStrategy estrategia = getBufferStrategy();
+        if(estrategia == null) {
+            // Se crean 3 buffers
+            createBufferStrategy(3);
+            return;
+        }
+
+        pantalla.limpiar();
+        pantalla.mostrar(x, y);
+
+        // Método para copiar el array de Pantalla al de Juego
+        System.arraycopy(pantalla.pixeles,0,pixeles,0,pixeles.length);
+
+        // Este objeto se encarga de dibujar lo que este dentro del buffer
+        Graphics g = estrategia.getDrawGraphics();
+        // Se le pasa la imagen que debe dibujar
+        g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
+        // Luego de dibujar, se libera la memoria
+        g.dispose();
+
+        estrategia.show();
+
         fps++;
     }
 

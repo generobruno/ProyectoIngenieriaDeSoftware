@@ -19,6 +19,10 @@ public final class Sprite {
 
     private final HojaSprites hojaSprites;
 
+    // Colección de Sprites
+    public static Sprite ejPj1 = new Sprite(32,0,0,HojaSprites.ejemplo1);
+    // Fin de la colección
+
     /**
      * Método Sprite:
      * Constructor de la clase.

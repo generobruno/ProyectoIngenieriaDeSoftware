@@ -15,6 +15,10 @@ public class HojaSprites {
     private final int alto;
     public final int[] pixeles;
 
+    // Colección de hojas de sprites
+    public static HojaSprites ejemplo1 = new HojaSprites("/texturas/texturasEj.png",128,192);
+    // Fin de la colección
+
     /**
      * Método HojaSprites:
      * Constructor de la clase. Cargamos una imagen y se crea un array con
