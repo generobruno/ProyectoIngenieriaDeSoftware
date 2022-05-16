@@ -95,4 +95,19 @@ public final class Pantalla {
 
     }
 
+    /**
+     * Getter del ancho
+     * @return Ancho de la pantalla
+     */
+    public int getAncho() {
+        return ancho;
+    }
+
+    /**
+     * Getter del alto
+     * @return Alto de la pantalla
+     */
+    public int getAlto() {
+        return alto;
+    }
 }

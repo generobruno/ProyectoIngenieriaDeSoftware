@@ -9,11 +9,11 @@ import graficos.Pantalla;
  */
 public abstract class Mapa {
     // Ancho del mapa
-    private int ancho;
+    protected int ancho;
     // Alto del mapa
-    private int alto;
+    protected int alto;
     // Array de cuadros que conforman el mapa
-    private int[] cuadros;
+    protected int[] cuadros;
 
     /**
      * Constructor de la clase. Crea un mapa aleatorio.
@@ -35,12 +35,28 @@ public abstract class Mapa {
         cargarMapa(ruta);
     }
 
-    private void generarMapa() { }
+    protected void generarMapa() { }
 
     private void cargarMapa(String ruta) { }
 
     public void actualizar() { }
 
-    public void mostrar(int compensacionX, int compensacionY, Pantalla pantalla) { }
+    /**
+     * Clase mostrar.
+     * Traduce el movimiento de los cuadros a pixeles, haciendo Bit Shifting.
+     * @param compensacionX Movimiento del jugador en el eje x
+     * @param compensacionY Movimiento del jugador en el eje y
+     * @param pantalla Pantalla donde se muestra el mapa
+     */
+    public void mostrar(int compensacionX, int compensacionY, Pantalla pantalla) {
+        // Oeste
+        int o = compensacionX >> 5;
+        // Este
+        int e = (compensacionX + pantalla.getAncho()) >> 5;
+        // Norte
+        int n = compensacionY >> 5;
+        // Sur
+        int s = (compensacionY + pantalla.getAlto()) >> 5;
+    }
 
 }
