@@ -14,10 +14,9 @@ public final class Pantalla {
     // Array de los pixeles
     public final int[] pixeles;
 
-    //TODO Esto es temporal
-    private final static int LADO_SPRITE = 32;
-    private final static int MASCARA_SPRITE = LADO_SPRITE-1;
-    //TODO Fin de lo temporal
+    private int diferenciaX;
+    private int diferenciaY;
+
 
     /**
      * Constructor de la clase Pantalla
@@ -41,58 +40,35 @@ public final class Pantalla {
     }
 
     /**
-     * Método que dibuja la pantalla, de izquierda a derecha y de arriba
-     * hacia abajo.
-     * @param compensacionX movimiento realizado en el eje X por el pj
-     * @param compensacionY movimiento realizado en el eje Y por el pj
-     */
-    public void mostrar(final int compensacionX, final int compensacionY) {
-
-        for(int y = 0; y < alto; y++) {
-            int posicionY = y + compensacionY;
-            // Si se llega a los limites de la pantalla (o mapa):
-            if(posicionY < 0 || posicionY >= alto) {
-                // Dejamos de dibujar en este eje
-                continue;
-            }
-
-            for(int x = 0; x < ancho; x++) {
-                int posicionX = x + compensacionX;
-                // Si se llega a los limites de la pantalla (o mapa):
-                if(posicionX < 0 || posicionX >= ancho) {
-                    // Dejamos de dibujar en este eje
-                    continue;
-                }
-                // Se llena el array de pixeles con lo que se mostrará por pantalla
-                // TODO Esto es temporal
-                pixeles[posicionX + posicionY * ancho] =
-                        Sprite.ejPj1.pixeles[(x & MASCARA_SPRITE) + (y & MASCARA_SPRITE) * LADO_SPRITE];
-                // TODO Fin de lo temporal
-
-            } // Fin del for para X
-        } // Fin del for para Y
-    } // Fin de mostrar()
-
-    /**
      * Método mostrarCuadro. Se encarga de dibujar un cuadro en la pantalla.
      * @param compensacionX movimiento realizado en el eje X por el pj
      * @param compensacionY movimiento realizado en el eje Y por el pj
      * @param cuadro Cuadro que se dibujará
      */
     public void mostrarCuadro(int compensacionX, int compensacionY, Cuadro cuadro) {
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY;
+
         for(int y = 0; y < cuadro.sprite.getLado(); y++) {
             int posicionY = y + compensacionY;
             for(int x = 0; x < cuadro.sprite.getLado(); x++) {
                 int posicionX = x + compensacionX;
                 // Condicional para que no se dibujen los cuadros fuera de la pantalla
-                if(posicionX < 0 || posicionX > ancho || posicionY < 0 || posicionY > alto) {
+                if(posicionX < -cuadro.sprite.getLado() || posicionX >= ancho || posicionY < 0 || posicionY >= alto) {
                     break;
+                }
+                if(posicionX < 0) {
+                    posicionX = 0;
                 }
                 pixeles[posicionX + posicionY * ancho] =
                         cuadro.sprite.pixeles[x + y * cuadro.sprite.getLado()];
             } // Fin del for x
         } // Fin del for y
+    }
 
+    public void setDiferencia(final int diferenciaX,final int diferenciaY) {
+        this.diferenciaX = diferenciaX;
+        this.diferenciaY = diferenciaY;
     }
 
     /**

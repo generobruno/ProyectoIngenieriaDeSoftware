@@ -1,6 +1,7 @@
 package mapa;
 
 import graficos.Pantalla;
+import mapa.cuadro.Cuadro;
 
 /**
  * Clase Mapa.
@@ -48,15 +49,37 @@ public abstract class Mapa {
      * @param compensacionY Movimiento del jugador en el eje y
      * @param pantalla Pantalla donde se muestra el mapa
      */
-    public void mostrar(int compensacionX, int compensacionY, Pantalla pantalla) {
+    public void mostrar(final int compensacionX, final int compensacionY, final Pantalla pantalla) {
+
+        pantalla.setDiferencia(compensacionX,compensacionY);
+
         // Oeste
-        int o = compensacionX >> 5;
+        int o = compensacionX >> 5; // Equivalente a dividir entre 32
         // Este
-        int e = (compensacionX + pantalla.getAncho()) >> 5;
+        int e = (compensacionX + pantalla.getAncho() + Cuadro.LADO) >> 5;
         // Norte
         int n = compensacionY >> 5;
         // Sur
-        int s = (compensacionY + pantalla.getAlto()) >> 5;
+        int s = (compensacionY + pantalla.getAlto() + Cuadro.LADO) >> 5;
+
+        for(int y = n; y < s; y++) {
+            for(int x = o; x < e; x++) {
+                getCuadro(x,y).mostrar(x,y,pantalla);
+            }
+        }
+
+    }
+
+    public Cuadro getCuadro(final int x, final int y) {
+        if(x < 0 || y < 0 || x >= ancho || y >= alto) {
+            return Cuadro.VACIO;
+        }
+        switch(cuadros[x + y * ancho]) {
+            case 0:
+                return Cuadro.ASFALTO;
+            default:
+                return Cuadro.VACIO;
+        }
     }
 
 }

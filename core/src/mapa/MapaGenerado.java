@@ -3,7 +3,7 @@ package mapa;
 import java.util.Random;
 
 public class MapaGenerado extends Mapa {
-    private final Random aleatorio = new Random();
+    private static final Random aleatorio = new Random();
 
     public MapaGenerado(int ancho, int alto) {
         super(ancho, alto);

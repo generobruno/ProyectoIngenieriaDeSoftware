@@ -13,8 +13,11 @@ public abstract class Cuadro {
     private int y;
     // Sprite del cuadro
     public Sprite sprite;
+    // Lado de cada cuadro TODO REVISAR
+    public static final int LADO = 32;
 
     // Colección de Cuadros
+    public static final Cuadro VACIO = new CuadroVacio(Sprite.VACIO);
     //TODO CAMBIAR
     public static final Cuadro ASFALTO = new CuadroAsfalto(Sprite.ejPj1);
     // Fin de la colección
@@ -33,7 +36,9 @@ public abstract class Cuadro {
      * @param y posición y del cuadro
      * @param pantalla pantalla donde se mostrará el cuadro
      */
-    public void mostrar(int x, int y, Pantalla pantalla) { }
+    public void mostrar(int x, int y, Pantalla pantalla) {
+        pantalla.mostrarCuadro(x << 5,y << 5,this);
+    }
 
     /**
      * Método sólido. Un cuadro sólido no puede atravesarse.

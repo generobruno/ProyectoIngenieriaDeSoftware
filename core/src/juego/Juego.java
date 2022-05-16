@@ -2,6 +2,8 @@ package juego;
 
 import control.Teclado;
 import graficos.Pantalla;
+import mapa.Mapa;
+import mapa.MapaGenerado;
 
 import javax.swing.JFrame;
 
@@ -44,6 +46,7 @@ public class Juego extends Canvas implements Runnable{
     private static Thread thread;
     private static Teclado teclado;
     private static Pantalla pantalla;
+    private static Mapa mapa;
 
     // Imagen en buffer, en blanco
     private static BufferedImage imagen =
@@ -61,6 +64,9 @@ public class Juego extends Canvas implements Runnable{
         setPreferredSize(new Dimension(ANCHO, ALTO));
 
         pantalla = new Pantalla(ANCHO, ALTO);
+
+        // TODO Ver si cambiamos el tamaño del mapa (tilesXtiles)
+        mapa = new MapaGenerado(128,128);
 
         teclado = new Teclado();
         addKeyListener(teclado);
@@ -127,19 +133,19 @@ public class Juego extends Canvas implements Runnable{
         // Acciones que se toman dependiendo de las teclas presionadas
         if (teclado.arriba){
             //System.out.println("ARRIBA");
-            y++;
+            y--;
         }
         if (teclado.abajo){
             //System.out.println("ABAJO");
-            y--;
+            y++;
         }
         if (teclado.izquierda){
             //System.out.println("IZQUIERDA");
-            x++;
+            x--;
         }
         if (teclado.derecha){
             //System.out.println("DERECHA");
-            x--;
+            x++;
         }
 
         aps++;
@@ -161,7 +167,7 @@ public class Juego extends Canvas implements Runnable{
         }
 
         pantalla.limpiar();
-        pantalla.mostrar(x, y);
+        mapa.mostrar(x,y,pantalla);
 
         // Método para copiar el array de Pantalla al de Juego
         System.arraycopy(pantalla.pixeles,0,pixeles,0,pixeles.length);
@@ -189,7 +195,7 @@ public class Juego extends Canvas implements Runnable{
         // TEMPORIZADOR PARA LOS FPS
         // Un segundo en nanosegundos
         final int NS_POR_SEGUNDO = 1000000000;
-        // Actualizaciones por segundo objetivo TODO: PROBAR CON 30 MÁS TARDE
+        // Actualizaciones por segundo objetivo
         final byte APS_OBJETIVO = 60;
         // Nanosegundos que transcurren por actualización
         final double NS_POR_ACTUALIZACION = NS_POR_SEGUNDO/APS_OBJETIVO;

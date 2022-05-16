@@ -17,9 +17,10 @@ public final class Sprite {
     // Array con los colores del sprite
     public int[] pixeles;
 
-    private final HojaSprites hojaSprites;
+    private HojaSprites hojaSprites;
 
     // Colección de Sprites
+    public static final Sprite VACIO = new Sprite(32,0);
     // TODO CAMBIAR
     public static final Sprite ejPj1 = new Sprite(32,0,0,HojaSprites.ejemplo1);
     // Fin de la colección
@@ -39,7 +40,7 @@ public final class Sprite {
         // Es lado*lado porque cargamos sprites cuadrados
         pixeles = new int[this.lado * this.lado];
 
-        // De esta manera seleccionamos un sprite (cuadrado) de la hoja TODO: Revisar si es correcto
+        // De esta manera seleccionamos un sprite (cuadrado) de la hoja
         this.x = columna * lado;
         this.y = fila * lado;
 
@@ -50,6 +51,21 @@ public final class Sprite {
             for (int x = 0; x < lado; x++) {
                 pixeles[x + y * lado] = hojaSprites.pixeles[(x + this.x) + (y + this.y) * hojaSprites.getAncho()];
             }
+        }
+    }
+
+    /**
+     * Constructor del Sprite (sin Hoja de sprites)
+     * Crea un sprite del tamaño determinado compuesto solo por un color
+     * @param lado Tamaño del sprite
+     * @param color Color del sprite
+     */
+    public Sprite(final int lado, final int color) {
+        this.lado = lado;
+        pixeles = new int[lado*lado];
+
+        for(int i = 0; i < pixeles.length; i++) {
+            pixeles[i] = color;
         }
     }
 
