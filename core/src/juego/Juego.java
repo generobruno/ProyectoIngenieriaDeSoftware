@@ -27,19 +27,24 @@ public class Juego extends Canvas implements Runnable{
     private static final int ANCHO = 800;
     private static final int ALTO = 600;
 
-    // Variable booleana que nos permite saber cuando el juego esta en ejecucion.
-    // Al ser Volatile, la palabra no puede ejecutarse simultaneamente por 2 threads.
+    // Variable booleana que nos permite saber cuando el juego está en ejecución.
+    // Al ser Volatile, la palabra no puede ejecutarse simultáneamente por 2 threads.
     private static volatile boolean  enFuncionamiento = false;
 
     // TODO: Cambiar nombre del juego
     private static final String NOMBRE = "juego";
+
+    private static String CONTADOR_APS = "";
+    private static String CONTADOR_FPS = "";
 
     // Actualizaciones por segundo
     private static int aps = 0;
     // Frames por segundo
     private static int fps = 0;
 
+    // Movimiento en el eje horizontal
     private static int x = 0;
+    // Movimiento en el eje vertical
     private static int y = 0;
 
     private static JFrame ventana;
@@ -80,6 +85,8 @@ public class Juego extends Canvas implements Runnable{
         ventana.setLayout(new BorderLayout());
         // Hace que el canvas tengas las mismas dimensiones que la ventana
         ventana.add(this, BorderLayout.CENTER);
+        // Ventana sin bordes
+        ventana.setUndecorated(true);
         // Escala la ventana
         ventana.pack();
         ventana.setLocationRelativeTo(null);
@@ -147,6 +154,9 @@ public class Juego extends Canvas implements Runnable{
             //System.out.println("DERECHA");
             x++;
         }
+        if (teclado.salir){
+            System.exit(0);
+        }
 
         aps++;
     }
@@ -176,6 +186,10 @@ public class Juego extends Canvas implements Runnable{
         Graphics g = estrategia.getDrawGraphics();
         // Se le pasa la imagen que debe dibujar
         g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
+        g.setColor(Color.white);
+        g.fillRect(ANCHO/2,ALTO/2,32,32);
+        g.drawString(CONTADOR_APS,10,20);
+        g.drawString(CONTADOR_FPS,10,35);
 
         // Luego de dibujar, se libera la memoria
         g.dispose();
@@ -235,7 +249,8 @@ public class Juego extends Canvas implements Runnable{
             // referencia es mayor a un segundo se actualiza el contador y se muestran
             // las aps y los fps
             if (System.nanoTime() - referenciaContador > NS_POR_SEGUNDO){
-                ventana.setTitle(NOMBRE + " || APS: " + aps + " || FPS: " + fps);
+                CONTADOR_APS = "APS: " + aps;
+                CONTADOR_FPS = "FPS: " + fps;
                 aps = 0;
                 fps = 0;
                 referenciaContador = System.nanoTime();
