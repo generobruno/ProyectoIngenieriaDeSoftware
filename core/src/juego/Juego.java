@@ -33,7 +33,7 @@ public class Juego extends Canvas implements Runnable{
     private static volatile boolean  enFuncionamiento = false;
 
     // TODO: Cambiar nombre del juego
-    private static final String NOMBRE = "Proyecto Menta";
+    private static final String NOMBRE = "ProyectoMenta";
 
     private static String CONTADOR_APS = "";
     private static String CONTADOR_FPS = "";
