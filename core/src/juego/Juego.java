@@ -1,6 +1,7 @@
 package juego;
 
 import control.Teclado;
+import entes.criaturas.Jugador;
 import graficos.Pantalla;
 import mapa.Mapa;
 import mapa.MapaGenerado;
@@ -32,7 +33,7 @@ public class Juego extends Canvas implements Runnable{
     private static volatile boolean  enFuncionamiento = false;
 
     // TODO: Cambiar nombre del juego
-    private static final String NOMBRE = "juego";
+    private static final String NOMBRE = "Proyecto Menta";
 
     private static String CONTADOR_APS = "";
     private static String CONTADOR_FPS = "";
@@ -42,16 +43,16 @@ public class Juego extends Canvas implements Runnable{
     // Frames por segundo
     private static int fps = 0;
 
-    // Movimiento en el eje horizontal
-    private static int x = 0;
-    // Movimiento en el eje vertical
-    private static int y = 0;
-
     private static JFrame ventana;
     private static Thread thread;
     private static Teclado teclado;
     private static Pantalla pantalla;
+
+    // Mapa
     private static Mapa mapa;
+
+    // Jugador
+    private static Jugador jugador;
 
     // Imagen en buffer, en blanco
     private static BufferedImage imagen =
@@ -73,8 +74,12 @@ public class Juego extends Canvas implements Runnable{
         // TODO Ver si cambiamos el tamaño del mapa (tilesXtiles)
         mapa = new MapaGenerado(128,128);
 
+        // Teclado
         teclado = new Teclado();
         addKeyListener(teclado);
+
+        // Creamos al jugador
+        jugador = new Jugador(teclado);
 
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);
@@ -137,23 +142,9 @@ public class Juego extends Canvas implements Runnable{
     private void actualizar(){
         teclado.actualizar();
 
+        jugador.actualizar();
+
         // Acciones que se toman dependiendo de las teclas presionadas
-        if (teclado.arriba){
-            //System.out.println("ARRIBA");
-            y--;
-        }
-        if (teclado.abajo){
-            //System.out.println("ABAJO");
-            y++;
-        }
-        if (teclado.izquierda){
-            //System.out.println("IZQUIERDA");
-            x--;
-        }
-        if (teclado.derecha){
-            //System.out.println("DERECHA");
-            x++;
-        }
         if (teclado.salir){
             System.exit(0);
         }
@@ -176,20 +167,23 @@ public class Juego extends Canvas implements Runnable{
             return;
         }
 
-        pantalla.limpiar();
-        mapa.mostrar(x,y,pantalla);
+        //pantalla.limpiar();
+        mapa.mostrar(jugador.getPosicionX(), jugador.getPosicionY(), pantalla);
 
         // Método para copiar el array de Pantalla al de Juego
         System.arraycopy(pantalla.pixeles,0,pixeles,0,pixeles.length);
 
         // Este objeto se encarga de dibujar lo que este dentro del buffer
         Graphics g = estrategia.getDrawGraphics();
+
         // Se le pasa la imagen que debe dibujar
         g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
         g.setColor(Color.white);
         g.fillRect(ANCHO/2,ALTO/2,32,32);
         g.drawString(CONTADOR_APS,10,20);
         g.drawString(CONTADOR_FPS,10,35);
+        g.drawString("X: " + jugador.getPosicionX(),10,50);
+        g.drawString("Y: " + jugador.getPosicionY(),10,65);
 
         // Luego de dibujar, se libera la memoria
         g.dispose();
