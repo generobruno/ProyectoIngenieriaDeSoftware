@@ -19,11 +19,29 @@ public final class Sprite {
 
     private HojaSprites hojaSprites;
 
-    // Colección de Sprites
+    // Colección de Sprites Personaje
+    public static final Sprite ABAJO0 = new Sprite(64,0,0,HojaSprites.jugador);
+    public static final Sprite ABAJO1 = new Sprite(64,1,0,HojaSprites.jugador);
+    public static final Sprite ABAJO2 = new Sprite(64,3,0,HojaSprites.jugador);
+
+    public static final Sprite DERECHA0 = new Sprite(64,0,1,HojaSprites.jugador);
+    public static final Sprite DERECHA1 = new Sprite(64,1,1,HojaSprites.jugador);
+    public static final Sprite DERECHA2 = new Sprite(64,4,1,HojaSprites.jugador);
+
+    public static final Sprite IZQUIERDA0 = new Sprite(64,0,2,HojaSprites.jugador);
+    public static final Sprite IZQUIERDA1 = new Sprite(64,3,2,HojaSprites.jugador);
+    public static final Sprite IZQUIERDA2 = new Sprite(64,4,2,HojaSprites.jugador);
+
+    public static final Sprite ARRIBA0 = new Sprite(64,0,3,HojaSprites.jugador);
+    public static final Sprite ARRIBA1 = new Sprite(64,1,3,HojaSprites.jugador);
+    public static final Sprite ARRIBA2 = new Sprite(64,3,3,HojaSprites.jugador);
+    // Fin colección de Sprites Personaje
+
+    // Colección de Sprites Mapa
     public static final Sprite VACIO = new Sprite(32,0);
     // TODO CAMBIAR
     public static final Sprite ejPj1 = new Sprite(32,0,0,HojaSprites.ejemplo1);
-    // Fin de la colección
+    // Fin de la colección Sprites Mapa
 
     /**
      * Método Sprite:
