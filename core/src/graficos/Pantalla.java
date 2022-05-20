@@ -67,6 +67,7 @@ public final class Pantalla {
         } // Fin del for y
     }
 
+    // TODO VER COMO ELIMINAR COLOR DE FONDO
     public void mostrarJugador(int compensacionX, int compensacionY, Jugador jugador) {
         compensacionX -= diferenciaX;
         compensacionY -= diferenciaY;
