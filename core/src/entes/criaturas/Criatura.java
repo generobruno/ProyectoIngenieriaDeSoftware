@@ -1,6 +1,7 @@
 package entes.criaturas;
 
 import entes.Ente;
+import graficos.Pantalla;
 import graficos.Sprite;
 
 public abstract class Criatura extends Ente {
@@ -52,5 +53,10 @@ public abstract class Criatura extends Ente {
         return false;
     }
 
+    public Sprite getSprite() {
+        return sprite;
+    }
 
+
+    public abstract void mostrar(Pantalla pantalla);
 }

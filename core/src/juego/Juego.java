@@ -3,6 +3,7 @@ package juego;
 import control.Teclado;
 import entes.criaturas.Jugador;
 import graficos.Pantalla;
+import graficos.Sprite;
 import mapa.Mapa;
 import mapa.MapaGenerado;
 
@@ -79,7 +80,7 @@ public class Juego extends Canvas implements Runnable{
         addKeyListener(teclado);
 
         // Creamos al jugador
-        jugador = new Jugador(teclado);
+        jugador = new Jugador(teclado,225,225, Sprite.ABAJO0);
 
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);
@@ -168,7 +169,9 @@ public class Juego extends Canvas implements Runnable{
         }
 
         //pantalla.limpiar();
-        mapa.mostrar(jugador.getPosicionX(), jugador.getPosicionY(), pantalla);
+        mapa.mostrar(jugador.getPosicionX() - pantalla.getAncho()/2 + jugador.getSprite().getLado()/2 ,
+                jugador.getPosicionY() - pantalla.getAlto()/2 + jugador.getSprite().getLado()/2, pantalla);
+        jugador.mostrar(pantalla);
 
         // Método para copiar el array de Pantalla al de Juego
         System.arraycopy(pantalla.pixeles,0,pixeles,0,pixeles.length);
@@ -179,7 +182,6 @@ public class Juego extends Canvas implements Runnable{
         // Se le pasa la imagen que debe dibujar
         g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
         g.setColor(Color.white);
-        g.fillRect(ANCHO/2,ALTO/2,32,32);
         g.drawString(CONTADOR_APS,10,20);
         g.drawString(CONTADOR_FPS,10,35);
         g.drawString("X: " + jugador.getPosicionX(),10,50);

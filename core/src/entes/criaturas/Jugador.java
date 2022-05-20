@@ -1,18 +1,22 @@
 package entes.criaturas;
 
 import control.Teclado;
+import graficos.Pantalla;
+import graficos.Sprite;
 
 public class Jugador extends Criatura {
     // Teclado con el que se mueve al jugador
     private Teclado teclado;
+    // Sprite del jugador
 
     /**
      * Constructor de la clase
      * Crea al jugador
      * @param teclado Teclado con el que se mueve al jugador
      */
-    public Jugador(Teclado teclado) {
+    public Jugador(Teclado teclado, Sprite sprite) {
         this.teclado = teclado;
+        this.sprite = sprite;
     }
 
     /**
@@ -21,8 +25,9 @@ public class Jugador extends Criatura {
      * @param posicionX Posición X del mapa donde aparece el jugador
      * @param posicionY Posición Y del mapa donde aparece el jugador
      */
-    public Jugador(Teclado teclado, int posicionX, int posicionY) {
+    public Jugador(Teclado teclado, int posicionX, int posicionY, Sprite sprite) {
         this.teclado = teclado;
+        this.sprite = sprite;
         this.x = posicionX;
         this.y = posicionY;
     }
@@ -53,6 +58,7 @@ public class Jugador extends Criatura {
     }
 
     @Override
-    public void mostrar() {
+    public void mostrar(Pantalla pantalla) {
+        pantalla.mostrarJugador(x,y,this);
     }
 }
