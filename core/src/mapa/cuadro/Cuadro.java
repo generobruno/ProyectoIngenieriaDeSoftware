@@ -19,7 +19,9 @@ public abstract class Cuadro {
     // Colección de Cuadros
     public static final Cuadro VACIO = new CuadroVacio(Sprite.VACIO);
     //TODO CAMBIAR
-    public static final Cuadro ASFALTO = new CuadroAsfalto(Sprite.ejPj1);
+    public static final Cuadro PASTO = new CuadroAsfalto(Sprite.PASTO);
+    public static final Cuadro PASTO1 = new CuadroAsfalto(Sprite.PASTO1);
+    public static final Cuadro PASTO2 = new CuadroAsfalto(Sprite.PASTO2);
     // Fin de la colección
 
     /**

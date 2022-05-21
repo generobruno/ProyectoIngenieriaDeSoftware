@@ -40,7 +40,9 @@ public final class Sprite {
     // Colección de Sprites Mapa
     public static final Sprite VACIO = new Sprite(32,0);
     // TODO CAMBIAR
-    public static final Sprite ejPj1 = new Sprite(64,0,0,HojaSprites.ejemplo1);
+    public static final Sprite PASTO = new Sprite(64,0,0,HojaSprites.texturasEj);
+    public static final Sprite PASTO1 = new Sprite(64,1,0,HojaSprites.texturasEj);
+    public static final Sprite PASTO2 = new Sprite(64,2,0,HojaSprites.texturasEj);
     // Fin de la colección Sprites Mapa
 
     /**

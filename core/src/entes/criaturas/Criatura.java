@@ -39,18 +39,44 @@ public abstract class Criatura extends Ente {
         }
         // Si la criatura esta viva, se mueve
         if(!isEliminado()) {
-            modificarPosicionX(desplazamientoX);
-            modificarPosicionY(desplazamientoY);
+            if(!enColision(desplazamientoX,0)) {
+                modificarPosicionX(desplazamientoX);
+            }
+            if(!enColision(0,desplazamientoY)) {
+                modificarPosicionY(desplazamientoY);
+            }
         }
     }
 
     /**
      * Método enColision
-     * Comprueba si la criatura se esta colisionando con un cuadro solido
+     * Comprueba si la criatura se está colisionando con un cuadro sólido
      * @return
      */
-    private boolean enColision() {
-        return false;
+    private boolean enColision(int desplazamientoX, int desplazamientoY) {
+        // Asumimos que por defecto no estamos colisionando con nada
+        boolean colision = false;
+
+        // Posición siguiente del Jugador
+        int posX = x + desplazamientoX;
+        int posY = y + desplazamientoY;
+
+        // Margen del Tile de Jugador que colisionaría
+        int margenIzquierdo = -6;
+        int margenDerecho = 18;
+        int margenSuperior = -4;
+        int margenInferior = 31;
+
+        // Bordes del Tile de Jugador
+        int bordeIzq = (posX + margenDerecho)/sprite.getLado();
+        int bordeDer = (posX + margenDerecho + margenIzquierdo)/ sprite.getLado();
+        int bordeSup = (posY + margenInferior)/sprite.getLado();
+        int bordeInf = (posY + margenInferior + margenSuperior)/sprite.getLado();
+
+        // Comprobamos las esquinas del Tile para ver si hay colisión
+        //TODO
+
+        return colision;
     }
 
     public Sprite getSprite() {
