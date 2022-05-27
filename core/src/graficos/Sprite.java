@@ -45,6 +45,25 @@ public final class Sprite {
     public static final Sprite PASTO2 = new Sprite(64,2,0,HojaSprites.texturasEj);
     // Fin de la colección Sprites Mapa
 
+    // Colección de Sprites Nuevo Mapa
+    public static final Sprite PISO = new Sprite(64,0,0,HojaSprites.texturasFinal);
+    public static final Sprite UNION1 = new Sprite(64,0,1,HojaSprites.texturasFinal);
+    public static final Sprite UNION2 = new Sprite(64,0,2,HojaSprites.texturasFinal);
+    public static final Sprite UNION3 = new Sprite(64,0,3,HojaSprites.texturasFinal);
+    public static final Sprite UNION4 = new Sprite(64,0,4,HojaSprites.texturasFinal);
+    public static final Sprite UNION5 = new Sprite(64,0,5,HojaSprites.texturasFinal);
+    public static final Sprite UNION6 = new Sprite(64,0,6,HojaSprites.texturasFinal);
+
+    public static final Sprite ESQ_INF_IZQ = new Sprite(64,0,7,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_SUP_IZQ = new Sprite(64,4,0,HojaSprites.texturasFinal);
+    public static final Sprite LADO_IZQ = new Sprite(64,4,1,HojaSprites.texturasFinal);
+    public static final Sprite LADO_HORIZ = new Sprite(64,4,2,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_SUP_DER = new Sprite(64,4,3,HojaSprites.texturasFinal);
+    public static final Sprite LADO_DER = new Sprite(64,4,4,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_INF_DER = new Sprite(64,4,5,HojaSprites.texturasFinal);
+    public static final Sprite NEGRO = new Sprite(64,4,6,HojaSprites.texturasFinal);
+    // Fin de Colección Sprites Nuevo Mapa
+
     /**
      * Método Sprite:
      * Constructor de la clase.
@@ -66,7 +85,7 @@ public final class Sprite {
 
         //NOTA: LAS OPERACIONES SE EJECUTAN SECUENCIALMENTE EN JAVA, POR ESO EL x + y * lado
         //Y NO (x + y) * lado
-
+        //TODO cambiar por arraycopy?
         for (int y = 0; y < lado; y++) {
             for (int x = 0; x < lado; x++) {
                 pixeles[x + y * lado] = hojaSprites.pixeles[(x + this.x) + (y + this.y) * hojaSprites.getAncho()];
