@@ -8,7 +8,7 @@ public abstract class Criatura extends Ente {
     // Sprite de la criatura
     protected Sprite sprite;
     // Dirección a la que apunta la criatura
-    protected char direccion = 'n';
+    protected char direccion = 's';
     // Movimiento de la criatura
     protected boolean enMovimiento = false;
 

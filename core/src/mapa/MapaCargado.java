@@ -52,7 +52,7 @@ public class MapaCargado extends Mapa{
                 case 0xff28c682 -> cuadrosCatalogo[i] = Cuadro.LADO_HORIZ;
                 case 0xffc0e8d7 -> cuadrosCatalogo[i] = Cuadro.ESQ_SUP_DER;
                 case 0xff31a341 -> cuadrosCatalogo[i] = Cuadro.LADO_DER;
-                case 0xfff7f150 -> cuadrosCatalogo[i] = Cuadro.ESQ_INF_DER;
+                case 0xfff6f050 -> cuadrosCatalogo[i] = Cuadro.ESQ_INF_DER;
                 case 0xff000000 -> cuadrosCatalogo[i] = Cuadro.NEGRO;
                 default -> cuadrosCatalogo[i] = Cuadro.VACIO;
             }
