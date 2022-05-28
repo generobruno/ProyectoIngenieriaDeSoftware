@@ -15,6 +15,9 @@ public abstract class Mapa {
     protected int alto;
     // Array de cuadros que conforman el mapa
     protected int[] cuadros;
+    // Array de cuadros que conforman el mapa
+    protected Cuadro[] cuadrosCatalogo;
+
 
     /**
      * Constructor de la clase. Crea un mapa aleatorio.
@@ -34,11 +37,12 @@ public abstract class Mapa {
      */
     public Mapa(String ruta) {
         cargarMapa(ruta);
+        generarMapa();
     }
 
     protected void generarMapa() { }
 
-    private void cargarMapa(String ruta) { }
+    protected void cargarMapa(String ruta) { }
 
     public void actualizar() { }
 
@@ -64,7 +68,11 @@ public abstract class Mapa {
 
         for(int y = n; y < s; y++) {
             for(int x = o; x < e; x++) {
-                getCuadro(x,y).mostrar(x,y,pantalla);
+                if(x < 0 || y < 0 || x >= ancho || y >= alto){
+                    Cuadro.VACIO.mostrar( x, y, pantalla);
+                }else{
+                    cuadrosCatalogo[x + y * ancho].mostrar( x, y, pantalla);
+                }
             }
         }
 
@@ -74,16 +82,24 @@ public abstract class Mapa {
         if(x < 0 || y < 0 || x >= ancho || y >= alto) {
             return Cuadro.VACIO;
         }
-        switch(cuadros[x + y * ancho]) {
-            case 0:
-                return Cuadro.PASTO;
-            case 1:
-                return Cuadro.PASTO1;
-            case 2:
-                return Cuadro.PASTO2;
-            default:
-                return Cuadro.VACIO;
-        }
+        return switch (cuadros[x + y * ancho]) {
+            case 0 -> Cuadro.PISO;
+            case 1 -> Cuadro.UNION1;
+            case 2 -> Cuadro.UNION2;
+            case 3 -> Cuadro.UNION3;
+            case 4 -> Cuadro.UNION4;
+            case 5 -> Cuadro.UNION5;
+            case 6 -> Cuadro.UNION6;
+            case 7 -> Cuadro.ESQ_INF_DER;
+            case 8 -> Cuadro.ESQ_SUP_DER;
+            case 9 -> Cuadro.ESQ_INF_IZQ;
+            case 10 -> Cuadro.ESQ_SUP_IZQ;
+            case 11 -> Cuadro.LADO_DER;
+            case 12 -> Cuadro.LADO_IZQ;
+            case 13 -> Cuadro.LADO_HORIZ;
+            case 14 -> Cuadro.NEGRO;
+            default -> Cuadro.VACIO;
+        };
     }
 
 }

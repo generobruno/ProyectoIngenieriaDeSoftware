@@ -5,6 +5,7 @@ import entes.criaturas.Jugador;
 import graficos.Pantalla;
 import graficos.Sprite;
 import mapa.Mapa;
+import mapa.MapaCargado;
 import mapa.MapaGenerado;
 
 import javax.swing.JFrame;
@@ -73,14 +74,13 @@ public class Juego extends Canvas implements Runnable{
         pantalla = new Pantalla(ANCHO, ALTO);
 
         // TODO Ver si cambiamos el tamaño del mapa (tilesXtiles)
-        mapa = new MapaGenerado(128,128);
-
+        mapa = new MapaCargado("/texturas/MapaPrincipal64px.png");
         // Teclado
         teclado = new Teclado();
         addKeyListener(teclado);
 
         // Creamos al jugador
-        jugador = new Jugador(teclado,225,225, Sprite.ABAJO0);
+        jugador = new Jugador(teclado,1000,130, Sprite.ABAJO0);
 
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);

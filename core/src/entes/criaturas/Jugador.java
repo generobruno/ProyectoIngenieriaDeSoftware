@@ -43,7 +43,7 @@ public class Jugador extends Criatura {
         int desplazamientoX = 0;
         int desplazamientoY = 0;
 
-        int velocidadMovimiento = 1;
+        int velocidadMovimiento = 4;
 
         // Aumenta hasta el número máximo que puede tener un int
         if(animacion < 32767) {
@@ -54,7 +54,7 @@ public class Jugador extends Criatura {
 
         // Correr
         if(teclado.correr) {
-            velocidadMovimiento = 2;
+            velocidadMovimiento = 8;
         }
 
         if(teclado.arriba) {
