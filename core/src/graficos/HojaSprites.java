@@ -19,6 +19,7 @@ public class HojaSprites {
     public static HojaSprites jugador = new HojaSprites("/texturas/SpriteSamid.png",320,320);
     //TODO CAMBIAR
     public static HojaSprites texturasEj = new HojaSprites("/texturas/texturasEj.png",512,512);
+    public static HojaSprites texturasFinal = new HojaSprites("/texturas/CodigodeColores.png",512,512);
     // Fin de la colección
 
     /**

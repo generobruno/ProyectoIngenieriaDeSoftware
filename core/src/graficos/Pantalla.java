@@ -83,6 +83,7 @@ public final class Pantalla {
                 if(posicionX < 0) {
                     posicionX = 0;
                 }
+                if(jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()] < 0xffffffff)
                 pixeles[posicionX + posicionY * ancho] =
                         jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()];
             } // Fin del for x
