@@ -18,7 +18,6 @@ public class Cuadro {
 
     // Colección de Cuadros
     public static final Cuadro VACIO = new Cuadro(Sprite.VACIO);
-
     public static final Cuadro PISO = new Cuadro(Sprite.PISO);
     public static final Cuadro UNION1 = new Cuadro(Sprite.UNION1);
     public static final Cuadro UNION2 = new Cuadro(Sprite.UNION2);
@@ -33,7 +32,6 @@ public class Cuadro {
     public static final Cuadro ESQ_SUP_DER = new Cuadro(Sprite.ESQ_SUP_DER);
     public static final Cuadro LADO_IZQ = new Cuadro(Sprite.LADO_IZQ);
     public static final Cuadro ESQ_INF_DER  = new Cuadro(Sprite.ESQ_INF_DER);
-    public static final Cuadro NEGRO  = new Cuadro(Sprite.NEGRO);
     // Fin de la colección
 
     /**

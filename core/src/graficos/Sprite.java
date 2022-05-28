@@ -39,23 +39,33 @@ public final class Sprite {
 
     // Colección de Sprites Mapa
     public static final Sprite VACIO = new Sprite(32,0);
-    public static final Sprite PISO = new Sprite(64,0,0,HojaSprites.texturasFinal);
+   // public static final Sprite PISO = new Sprite(64,0,0,HojaSprites.texturasFinal);
     public static final Sprite UNION1 = new Sprite(64,0,1,HojaSprites.texturasFinal);
     public static final Sprite UNION2 = new Sprite(64,0,2,HojaSprites.texturasFinal);
     public static final Sprite UNION3 = new Sprite(64,0,3,HojaSprites.texturasFinal);
     public static final Sprite UNION4 = new Sprite(64,0,4,HojaSprites.texturasFinal);
-    public static final Sprite UNION5 = new Sprite(64,0,5,HojaSprites.texturasFinal);
-    public static final Sprite UNION6 = new Sprite(64,0,6,HojaSprites.texturasFinal);
-    public static final Sprite ESQ_INF_IZQ = new Sprite(64,0,7,HojaSprites.texturasFinal);
-    public static final Sprite ESQ_SUP_IZQ = new Sprite(64,4,0,HojaSprites.texturasFinal);
-    public static final Sprite LADO_IZQ = new Sprite(64,4,1,HojaSprites.texturasFinal);
-    public static final Sprite LADO_HORIZ = new Sprite(64,4,2,HojaSprites.texturasFinal);
-    public static final Sprite ESQ_SUP_DER = new Sprite(64,4,3,HojaSprites.texturasFinal);
-    public static final Sprite LADO_DER = new Sprite(64,4,4,HojaSprites.texturasFinal);
-    public static final Sprite ESQ_INF_DER = new Sprite(64,4,5,HojaSprites.texturasFinal);
-    public static final Sprite NEGRO = new Sprite(64,4,6,HojaSprites.texturasFinal);
+    public static final Sprite UNION5 = new Sprite(64,1,0,HojaSprites.texturasFinal);
+    public static final Sprite UNION6 = new Sprite(64,1,1,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_INF_IZQ = new Sprite(64,1,2,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_SUP_IZQ = new Sprite(64,1,3,HojaSprites.texturasFinal);
+    public static final Sprite LADO_IZQ = new Sprite(64,1,4,HojaSprites.texturasFinal);
+    public static final Sprite LADO_HORIZ = new Sprite(64,2,0,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_SUP_DER = new Sprite(64,2,1,HojaSprites.texturasFinal);
+    public static final Sprite LADO_DER = new Sprite(64,2,2,HojaSprites.texturasFinal);
+    public static final Sprite ESQ_INF_DER = new Sprite(64,2,3,HojaSprites.texturasFinal);
+
     // Fin de Colección Sprites Mapa
 
+    // Colección de Sprites Reducidos
+
+    public static final Sprite PISO = new Sprite(64,0,0,HojaSprites.texturasFinalReducidas);
+    public static final Sprite ESQUINA1A = new Sprite(64,0,1,HojaSprites.texturasFinalReducidas);
+    public static final Sprite ESQUINA1B = new Sprite(64,0,2,HojaSprites.texturasFinalReducidas);
+    public static final Sprite PARED1 = new Sprite(64,0,3,HojaSprites.texturasFinalReducidas);
+    public static final Sprite PARED2 = new Sprite(64,0,4,HojaSprites.texturasFinalReducidas);
+    public static final Sprite ESQUINA2 = new Sprite(64,1,0,HojaSprites.texturasFinalReducidas);
+    public static final Sprite LADO = new Sprite(64,1,1,HojaSprites.texturasFinalReducidas);
+    // Fin de Colección Sprites Reducidos
     /**
      * Método Sprite:
      * Constructor de la clase.

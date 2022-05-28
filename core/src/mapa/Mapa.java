@@ -97,7 +97,6 @@ public abstract class Mapa {
             case 11 -> Cuadro.LADO_DER;
             case 12 -> Cuadro.LADO_IZQ;
             case 13 -> Cuadro.LADO_HORIZ;
-            case 14 -> Cuadro.NEGRO;
             default -> Cuadro.VACIO;
         };
     }
