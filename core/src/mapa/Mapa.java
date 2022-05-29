@@ -84,12 +84,12 @@ public abstract class Mapa {
         }
         return switch (cuadros[x + y * ancho]) {
             case 0 -> Cuadro.PISO;
-            case 1 -> Cuadro.UNION1;
-            case 2 -> Cuadro.UNION2;
-            case 3 -> Cuadro.UNION3;
-            case 4 -> Cuadro.UNION4;
-            case 5 -> Cuadro.UNION5;
-            case 6 -> Cuadro.UNION6;
+            case 1 -> Cuadro.ESQUINA1A;
+            case 2 -> Cuadro.ESQUINA1B;
+            case 3 -> Cuadro.PARED1;
+            case 4 -> Cuadro.PARED2;
+            case 5 -> Cuadro.ESQUINA1ARX;
+            case 6 -> Cuadro.ESQUINA1BRX;
             case 7 -> Cuadro.ESQ_INF_DER;
             case 8 -> Cuadro.ESQ_SUP_DER;
             case 9 -> Cuadro.ESQ_INF_IZQ;
@@ -97,7 +97,6 @@ public abstract class Mapa {
             case 11 -> Cuadro.LADO_DER;
             case 12 -> Cuadro.LADO_IZQ;
             case 13 -> Cuadro.LADO_HORIZ;
-            case 14 -> Cuadro.NEGRO;
             default -> Cuadro.VACIO;
         };
     }

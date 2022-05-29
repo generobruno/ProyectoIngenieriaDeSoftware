@@ -13,27 +13,26 @@ public class Cuadro {
     private int y;
     // Sprite del cuadro
     public Sprite sprite;
-    // Lado de cada cuadro TODO REVISAR
-    public static final int LADO = 32;
+    // Lado de cada cuadro
+    public static final int LADO = 64;
 
     // Colección de Cuadros
     public static final Cuadro VACIO = new Cuadro(Sprite.VACIO);
-
     public static final Cuadro PISO = new Cuadro(Sprite.PISO);
-    public static final Cuadro UNION1 = new Cuadro(Sprite.UNION1);
-    public static final Cuadro UNION2 = new Cuadro(Sprite.UNION2);
-    public static final Cuadro UNION3 = new Cuadro(Sprite.UNION3);
-    public static final Cuadro UNION4= new Cuadro(Sprite.UNION4);
-    public static final Cuadro UNION5 = new Cuadro(Sprite.UNION5);
-    public static final Cuadro UNION6 = new Cuadro(Sprite.UNION6);
+    public static final Cuadro ESQUINA1A = new Cuadro(Sprite.ESQUINA1A);
+    public static final Cuadro ESQUINA1B = new Cuadro(Sprite.ESQUINA1B);
+    public static final Cuadro ESQUINA1ARX = new Cuadro(Sprite.ESQUINA1ARX);
+    public static final Cuadro ESQUINA1BRX = new Cuadro(Sprite.ESQUINA1BRX);
+    public static final Cuadro PARED1 = new Cuadro(Sprite.PARED1);
+    public static final Cuadro PARED2 = new Cuadro(Sprite.PARED2);
     public static final Cuadro ESQ_INF_IZQ = new Cuadro(Sprite.ESQ_INF_IZQ);
     public static final Cuadro ESQ_SUP_IZQ = new Cuadro(Sprite.ESQ_SUP_IZQ);
-    public static final Cuadro LADO_DER = new Cuadro(Sprite.LADO_DER);
-    public static final Cuadro LADO_HORIZ = new Cuadro(Sprite.LADO_HORIZ);
-    public static final Cuadro ESQ_SUP_DER = new Cuadro(Sprite.ESQ_SUP_DER);
-    public static final Cuadro LADO_IZQ = new Cuadro(Sprite.LADO_IZQ);
     public static final Cuadro ESQ_INF_DER  = new Cuadro(Sprite.ESQ_INF_DER);
-    public static final Cuadro NEGRO  = new Cuadro(Sprite.NEGRO);
+    public static final Cuadro ESQ_SUP_DER = new Cuadro(Sprite.ESQ_SUP_DER);
+    public static final Cuadro LADO_DER = new Cuadro(Sprite.LADO_DER);
+    public static final Cuadro LADO_IZQ = new Cuadro(Sprite.LADO_IZQ);
+    public static final Cuadro LADO_HORIZ = new Cuadro(Sprite.LADO_HORIZ);
+
     // Fin de la colección
 
     /**
@@ -62,5 +61,6 @@ public class Cuadro {
     public boolean solido() {
         return false;
     }
+
 
 }

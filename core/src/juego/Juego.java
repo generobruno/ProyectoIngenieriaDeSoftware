@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferInt;
 
+
 /**
  * Clase Juego (Ejecutable):
  * Esta clase utiliza las librerías de AWT y Swing para generar
@@ -80,7 +81,7 @@ public class Juego extends Canvas implements Runnable{
         addKeyListener(teclado);
 
         // Creamos al jugador
-        jugador = new Jugador(teclado,1000,130, Sprite.ABAJO0);
+        jugador = new Jugador(teclado,992,1900, Sprite.ABAJO0);
 
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);

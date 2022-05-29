@@ -67,7 +67,6 @@ public final class Pantalla {
         } // Fin del for y
     }
 
-    // TODO VER COMO ELIMINAR COLOR DE FONDO
     public void mostrarJugador(int compensacionX, int compensacionY, Jugador jugador) {
         compensacionX -= diferenciaX;
         compensacionY -= diferenciaY;
@@ -83,6 +82,7 @@ public final class Pantalla {
                 if(posicionX < 0) {
                     posicionX = 0;
                 }
+                // Condicional que evita que se dibuje el fondo blanco el personaje
                 if(jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()] < 0xffffffff)
                 pixeles[posicionX + posicionY * ancho] =
                         jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()];
