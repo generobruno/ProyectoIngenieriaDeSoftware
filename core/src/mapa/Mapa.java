@@ -101,4 +101,30 @@ public abstract class Mapa {
         };
     }
 
+    /**
+     * Método getCuadroCatalogo
+     * Devuelve un cuadro de la posición del catálogo que le indiquemos
+     * @param posicion Posición en el catálogo
+     * @return Cuadro que necesitamos
+     */
+    public Cuadro getCuadroCatalogo(int posicion) {
+        return cuadrosCatalogo[posicion];
+    }
+
+    /**
+     * Método getAncho
+     * @return Ancho del Mapa
+     */
+    public int getAncho() {
+        return ancho;
+    }
+
+    /**
+     * Método getAlto
+     * @return Alto del Mapa
+     */
+    public int getAlto() {
+        return alto;
+    }
+
 }

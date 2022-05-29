@@ -72,16 +72,18 @@ public class Juego extends Canvas implements Runnable{
     public Juego() {
         setPreferredSize(new Dimension(ANCHO, ALTO));
 
+        // Pantalla
         pantalla = new Pantalla(ANCHO, ALTO);
 
-        // TODO Ver si cambiamos el tamaño del mapa (tilesXtiles)
+        // Mapa
         mapa = new MapaCargado("/texturas/MapaPrincipal64px.png");
+
         // Teclado
         teclado = new Teclado();
         addKeyListener(teclado);
 
         // Creamos al jugador
-        jugador = new Jugador(teclado,992,1900, Sprite.ABAJO0);
+        jugador = new Jugador(mapa, teclado,992,1900, Sprite.ABAJO0);
 
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);
@@ -93,7 +95,7 @@ public class Juego extends Canvas implements Runnable{
         // Hace que el canvas tengas las mismas dimensiones que la ventana
         ventana.add(this, BorderLayout.CENTER);
         // Ventana sin bordes
-        ventana.setUndecorated(true);
+        //ventana.setUndecorated(true);
         // Escala la ventana
         ventana.pack();
         ventana.setLocationRelativeTo(null);

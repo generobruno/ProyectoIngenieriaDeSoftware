@@ -13,6 +13,9 @@ public class Cuadro {
     private int y;
     // Sprite del cuadro
     public Sprite sprite;
+    // Boolean para ver si el cuadro es sólido
+    private boolean solido;
+
     // Lado de cada cuadro
     public static final int LADO = 64;
 
@@ -37,10 +40,24 @@ public class Cuadro {
 
     /**
      * Constructor del Cuadro
+     * Por defecto, el cuadro es sólido
      * @param sprite Sprite del cuadro.
      */
     public Cuadro(Sprite sprite) {
         this.sprite = sprite;
+        //TODO Ver si cambiar el por defecto
+        solido = false;
+    }
+
+    /**
+     * Constructor del Cuadro (Sobrecargado)
+     * En este caso se le puede definir si es sólido o no.
+     * @param sprite Sprite del cuadro.
+     * @param solido Si es sólido o no
+     */
+    public Cuadro(Sprite sprite, boolean solido) {
+        this.sprite = sprite;
+        this.solido = solido;
     }
 
     /**
@@ -55,11 +72,10 @@ public class Cuadro {
 
     /**
      * Método sólido. Un cuadro sólido no puede atravesarse.
-     * Por defecto, un cuadro no es sólido.
      * @return True si es sólido, false en caso contrario.
      */
-    public boolean solido() {
-        return false;
+    public boolean isSolido() {
+        return this.solido;
     }
 
 
