@@ -11,6 +11,11 @@ public class MapaCargado extends Mapa{
     // Array que guarda los píxeles que representan los cuadros en el mapa
     private int[] pixeles;
 
+    /**
+     * Constructor de la clase. Crea un mapa aleatorio.
+     * @param ruta ruta desde donde se carga el Mapa
+     */
+
     public MapaCargado(String ruta) {
         super(ruta);
     }
@@ -33,26 +38,27 @@ public class MapaCargado extends Mapa{
             e.printStackTrace();
         }
     }
-    /**Método generarMapa
+    /**
+     * Método generarMapa
      * genera un array ordenado de los cuadros que forman el mapa; asigna a cada color un cuadro
      */
     protected void generarMapa(){
         for(int i=0; i < pixeles.length; i++){
-            switch (pixeles[i]) {
+            switch (this.pixeles[i]) {
                 case 0xffada9a9 -> cuadrosCatalogo[i] = Cuadro.PISO;
-                case 0xffa8a8e1 -> cuadrosCatalogo[i] = Cuadro.UNION1;
-                case 0xff6565ff -> cuadrosCatalogo[i] = Cuadro.UNION2;
-                case 0xffd994ed -> cuadrosCatalogo[i] = Cuadro.UNION3;
-                case 0xffc62af3 -> cuadrosCatalogo[i] = Cuadro.UNION4;
-                case 0xffff004e -> cuadrosCatalogo[i] = Cuadro.UNION5;
-                case 0xffff0000 -> cuadrosCatalogo[i] = Cuadro.UNION6;
+                case 0xffa8a8e1 -> cuadrosCatalogo[i] = Cuadro.ESQUINA1A;
+                case 0xff6565ff -> cuadrosCatalogo[i] = Cuadro.ESQUINA1B;
+                case 0xffff004e -> cuadrosCatalogo[i] = Cuadro.ESQUINA1ARX;
+                case 0xffff0000 -> cuadrosCatalogo[i] = Cuadro.ESQUINA1BRX;
+                case 0xffd994ed -> cuadrosCatalogo[i] = Cuadro.PARED1;
+                case 0xffc62af3 -> cuadrosCatalogo[i] = Cuadro.PARED2;
                 case 0xff788d15 -> cuadrosCatalogo[i] = Cuadro.ESQ_INF_IZQ;
                 case 0xff51d8d6 -> cuadrosCatalogo[i] = Cuadro.ESQ_SUP_IZQ;
-                case 0xff1b5756 -> cuadrosCatalogo[i] = Cuadro.LADO_IZQ;
-                case 0xff28c682 -> cuadrosCatalogo[i] = Cuadro.LADO_HORIZ;
-                case 0xffc0e8d7 -> cuadrosCatalogo[i] = Cuadro.ESQ_SUP_DER;
-                case 0xff31a341 -> cuadrosCatalogo[i] = Cuadro.LADO_DER;
                 case 0xfff6f050 -> cuadrosCatalogo[i] = Cuadro.ESQ_INF_DER;
+                case 0xffc0e8d7 -> cuadrosCatalogo[i] = Cuadro.ESQ_SUP_DER;
+                case 0xff31a341 -> cuadrosCatalogo[i] = Cuadro.LADO_IZQ;
+                case 0xff1b5756 -> cuadrosCatalogo[i] = Cuadro.LADO_DER;
+                case 0xff28c682 -> cuadrosCatalogo[i] = Cuadro.LADO_HORIZ;
                 default -> cuadrosCatalogo[i] = Cuadro.VACIO;
             }
         }
