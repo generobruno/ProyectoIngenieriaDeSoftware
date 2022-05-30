@@ -1,7 +1,5 @@
 package graficos;
 
-import java.util.Arrays;
-
 /**
  * Clase Sprite:
  * Seleccionamos un Sprite de la Hoja de Sprites, utilizando las coordenadas
