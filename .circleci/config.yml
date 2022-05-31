@@ -13,13 +13,13 @@ jobs:
       - image: cimg/openjdk:17.0.2
     steps:
       - checkout
-      - run: mvn test
+      - run: mvn build
 
 workflows:
   version: 2
-  test-then-build:
+  build-then-test:
     jobs:
-      - test
-      - build:
+      - build
+      - test:
           requires:
-            - test
+            - build
