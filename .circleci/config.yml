@@ -13,5 +13,5 @@ workflows:
 
   build-then-test:
     jobs:
-      - package
+      - mvn package
      
