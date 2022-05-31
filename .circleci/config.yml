@@ -1,12 +1,25 @@
-version: 2.1
-executors:
-  java17:
-    docker:
-      - image: 'cimg/openjdk:17.0.2'
-orbs:
-  maven: circleci/maven@1.3.0
-workflows:
-  maven_test:
-    jobs:
-      - maven/test
+version: 2.0
 
+jobs:
+  test:
+    docker:
+      - image: cimg/openjdk:17.0.2
+    steps:
+      - checkout
+      - run: mvn test
+
+  build:
+    docker:
+      - image: cimg/openjdk:17.0.2
+    steps:
+      - checkout
+      - run: mvn test
+
+workflows:
+  version: 2
+  test-then-build:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
