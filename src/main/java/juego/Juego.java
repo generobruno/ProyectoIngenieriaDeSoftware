@@ -6,14 +6,12 @@ import graficos.Pantalla;
 import graficos.Sprite;
 import mapa.Mapa;
 import mapa.MapaCargado;
-import mapa.MapaGenerado;
 
 import javax.swing.JFrame;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferInt;
 
 
