@@ -1,32 +1,9 @@
-version: 2.0
-
-jobs:
-  test:
-    docker:
-      - image: cimg/openjdk:17.0.1
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - run: ./mvnw test
-
-  build:
-    docker:
-      - image: cimg/openjdk:17.0.1
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - run: ./mvnw -Dmaven.test.skip=true package
+orbs:
+  maven: circleci/maven@x.y
+  
+version: 2.1
 
 workflows:
-  version: 2
-
-  build-then-test:
+  maven_test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - maven/test
