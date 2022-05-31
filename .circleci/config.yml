@@ -1,12 +1,26 @@
-version: 2.1
-executors:
-  java17:
-    docker:
-      - image: 'cimg/openjdk:17.0.2'
-orbs:
-  maven: circleci/maven@1.3.0
-workflows:
-  maven_test:
-    jobs:
-      - maven/test
+version: 2.0
 
+jobs:
+  test:
+    docker:
+      - image: cimg/openjdk:17.0.1
+    steps:
+      - checkout
+      - run: ./mvnw test
+
+  build:
+    docker:
+      - image: cimg/openjdk:17.0.1
+    steps:
+      - checkout
+      - run: ./mvnw -Dmaven.test.skip=true package
+
+workflows:
+  version: 2
+
+  build-then-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
