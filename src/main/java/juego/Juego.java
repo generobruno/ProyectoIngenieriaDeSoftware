@@ -188,6 +188,13 @@ public class Juego extends Canvas implements Runnable{
         g.drawString("X: " + jugador.getPosicionX(),10,50);
         g.drawString("Y: " + jugador.getPosicionY(),10,65);
 
+        //TODO Pasar a PLAYERDATA
+        g.drawString("Resistencia: " + jugador.getResistencia(),10,80);
+        g.drawString("Vida Max: " + jugador.getVidaMax(),10,95);
+        g.drawString("Salud: " + jugador.getSalud(),10,110);
+        g.drawString("Exp: " + jugador.getExp(),10,125);
+        g.drawString("Nivel: " + jugador.getNivel(),10,140);
+
         // Luego de dibujar, se libera la memoria
         g.dispose();
 

@@ -12,6 +12,10 @@ public abstract class Criatura extends Ente {
     // Movimiento de la criatura
     protected boolean enMovimiento = false;
 
+    // Estadisticas de personaje
+    protected int vidaMax;
+    protected int salud;
+
     @Override
     public void actualizar() {
     }
