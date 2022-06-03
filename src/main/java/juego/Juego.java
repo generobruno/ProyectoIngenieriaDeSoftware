@@ -4,6 +4,7 @@ import control.Teclado;
 import entes.criaturas.Jugador;
 import graficos.Pantalla;
 import graficos.Sprite;
+import graficos.observer.Hud;
 import mapa.Mapa;
 import mapa.MapaCargado;
 
@@ -62,6 +63,9 @@ public class Juego extends Canvas implements Runnable{
     private static int[] pixeles =
             ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
+    // HUD
+    private static Hud hud;
+
     /**
      * Método Juego:
      * Constructor de la clase Juego:
@@ -82,7 +86,10 @@ public class Juego extends Canvas implements Runnable{
 
         // Creamos al jugador
         jugador = new Jugador(mapa, teclado,992,1900, Sprite.ABAJO0);
-
+        // Creamos el HUD del jugador;
+        hud = new Hud(jugador);
+        // Agregamos el HUD como Observer de Jugador
+        jugador.agregarObs(hud);
         // Creamos la ventana
         ventana = new JFrame(NOMBRE);
         //Para que se cierre la ventana al hacer clic en la cruz
@@ -188,13 +195,8 @@ public class Juego extends Canvas implements Runnable{
         g.drawString("X: " + jugador.getPosicionX(),10,50);
         g.drawString("Y: " + jugador.getPosicionY(),10,65);
 
-        //TODO Pasar a PLAYERDATA
-        g.drawString("Resistencia: " + jugador.getResistencia(),10,80);
-        g.drawString("Vida Max: " + jugador.getVidaMax(),10,95);
-        g.drawString("Salud: " + jugador.getSalud(),10,110);
-        g.drawString("Exp: " + jugador.getExp(),10,125);
-        g.drawString("Nivel: " + jugador.getNivel(),10,140);
-
+        // Se muestra el HUD
+        hud.displayInfo(g);
         // Luego de dibujar, se libera la memoria
         g.dispose();
 
