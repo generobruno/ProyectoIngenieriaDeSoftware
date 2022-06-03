@@ -11,6 +11,16 @@ public class Jugador extends Criatura {
     // Animación del jugador
     private int animacion;
 
+    // Estamina de Jugador
+    private int resistencia = 600;
+    private int recuperacion = 0;
+    private int RECUPERACION_MAX = 200; // Cool-down de la recuperación
+    private boolean recuperado = true;
+
+    // Experiencia del Jugador
+    private int nivel = 1;
+    private int exp = 0;
+
     /**
      * Constructor de la clase
      * Crea al jugador
@@ -20,6 +30,9 @@ public class Jugador extends Criatura {
         this.mapa = mapa;
         this.teclado = teclado;
         this.sprite = sprite;
+        // Salud del Jugador
+        this.vidaMax = 1000;
+        this.salud = 1000;
     }
 
     /**
@@ -54,21 +67,44 @@ public class Jugador extends Criatura {
         }
 
         // Correr
-        if(teclado.correr) {
+        // El jugador tiene estamina
+        if(teclado.correr && (resistencia > 0)) {
             velocidadMovimiento = 8;
+            recuperado = false;
+            recuperacion = 0;
+        } else { // El jugador no tiene estamina
+            velocidadMovimiento = 4;
+            if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
+                recuperacion++;
+            }
+            if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) {
+                resistencia++;
+            }
         }
 
         if(teclado.arriba) {
             desplazamientoY -= velocidadMovimiento;
+            if(teclado.correr && (resistencia > 0)) {
+                resistencia--;
+            }
         }
         if(teclado.abajo) {
             desplazamientoY += velocidadMovimiento;
+            if(teclado.correr && (resistencia > 0)) {
+                resistencia--;
+            }
         }
         if(teclado.derecha) {
             desplazamientoX += velocidadMovimiento;
+            if(teclado.correr && (resistencia > 0)) {
+                resistencia--;
+            }
         }
         if(teclado.izquierda) {
             desplazamientoX -= velocidadMovimiento;
+            if(teclado.correr && (resistencia > 0)) {
+                resistencia--;
+            }
         }
 
         // El jugador solo se mueve si se presionó una tecla de movimiento
@@ -124,8 +160,52 @@ public class Jugador extends Criatura {
 
     }
 
+    /**
+     * Método que muestra el jugador por pantalla
+     * @param pantalla Pantalla donde se muestra el jugador
+     */
     @Override
     public void mostrar(Pantalla pantalla) {
         pantalla.mostrarJugador(x,y,this);
+    }
+
+    /**
+     * Getter de la resistencia
+     * @return Resistencia del jugador
+     */
+    public int getResistencia(){
+        return resistencia;
+    }
+
+    /**
+     * Getter de la vida máxima
+     * @return Vida máxima del jugador
+     */
+    public int getVidaMax() {
+        return this.vidaMax;
+    }
+
+    /**
+     * Getter de la salud
+     * @return Salud del jugador
+     */
+    public int getSalud() {
+        return this.salud;
+    }
+
+    /**
+     * Getter de la experiencia
+     * @return Experiencia del jugador
+     */
+    public int getExp() {
+        return this.exp;
+    }
+
+    /**
+     * Getter del nivel
+     * @return Nivel del jugador
+     */
+    public int getNivel() {
+        return this.nivel;
     }
 }
