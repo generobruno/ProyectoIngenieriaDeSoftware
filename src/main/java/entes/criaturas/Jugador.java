@@ -3,9 +3,13 @@ package entes.criaturas;
 import control.Teclado;
 import graficos.Pantalla;
 import graficos.Sprite;
+import graficos.observer.Observer;
 import mapa.Mapa;
 
-public class Jugador extends Criatura {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Jugador extends Criatura implements Subject {
     // Teclado con el que se mueve al jugador
     private Teclado teclado;
     // Animación del jugador
@@ -20,6 +24,8 @@ public class Jugador extends Criatura {
     // Experiencia del Jugador
     private int nivel = 1;
     private int exp = 0;
+
+
 
     /**
      * Constructor de la clase
@@ -76,9 +82,11 @@ public class Jugador extends Criatura {
             velocidadMovimiento = 4;
             if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
                 recuperacion++;
+                notificar();
             }
             if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) {
                 resistencia++;
+                notificar();
             }
         }
 
@@ -86,24 +94,28 @@ public class Jugador extends Criatura {
             desplazamientoY -= velocidadMovimiento;
             if(teclado.correr && (resistencia > 0)) {
                 resistencia--;
+                notificar();
             }
         }
         if(teclado.abajo) {
             desplazamientoY += velocidadMovimiento;
             if(teclado.correr && (resistencia > 0)) {
                 resistencia--;
+                notificar();
             }
         }
         if(teclado.derecha) {
             desplazamientoX += velocidadMovimiento;
             if(teclado.correr && (resistencia > 0)) {
                 resistencia--;
+                notificar();
             }
         }
         if(teclado.izquierda) {
             desplazamientoX -= velocidadMovimiento;
             if(teclado.correr && (resistencia > 0)) {
                 resistencia--;
+                notificar();
             }
         }
 
@@ -157,7 +169,6 @@ public class Jugador extends Criatura {
                 }
             }
         }
-
     }
 
     /**
@@ -207,5 +218,22 @@ public class Jugador extends Criatura {
      */
     public int getNivel() {
         return this.nivel;
+    }
+    // Implementación del Patron Observer - Sujeto Concreto
+    @Override
+    public void agregarObs(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void quitarObs(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notificar(){
+        for (Observer observer:observers) {
+            observer.update();
+        }
     }
 }
