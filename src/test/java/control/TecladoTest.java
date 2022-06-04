@@ -17,7 +17,7 @@ class TecladoTest {
 
             //robot.keyPress(KeyEvent.VK_W);
             teclado.actualizar();
-            assertEquals(false,teclado.arriba);
+            assertEquals(true,teclado.arriba);
             //robot.keyRelease(KeyEvent.VK_W);
 
         } catch (AWTException e) {
