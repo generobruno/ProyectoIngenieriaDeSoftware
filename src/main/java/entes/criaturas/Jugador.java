@@ -1,6 +1,8 @@
 package entes.criaturas;
 
 import control.Teclado;
+import entes.comportamientos.AtaqueBerserk;
+import entes.comportamientos.AtaqueNormal;
 import graficos.Pantalla;
 import graficos.Sprite;
 import graficos.observer.Observer;
@@ -14,6 +16,7 @@ public class Jugador extends Criatura implements Subject {
     private Teclado teclado;
     // Animación del jugador
     private int animacion;
+    private int SALUD_CRITICA = 50;
 
     // Estamina de Jugador
     private int resistencia = 600;
@@ -36,9 +39,13 @@ public class Jugador extends Criatura implements Subject {
         this.mapa = mapa;
         this.teclado = teclado;
         this.sprite = sprite;
+
         // Salud del Jugador
         this.vidaMax = 1000;
         this.salud = 1000;
+
+        // Comportamientos
+        attackBehavior = new AtaqueNormal();
     }
 
     /**
@@ -80,6 +87,31 @@ public class Jugador extends Criatura implements Subject {
             recuperacion = 0;
         } else { // El jugador no tiene estamina
             velocidadMovimiento = 4;
+            if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
+                recuperacion++;
+                notificar();
+            }
+            if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) {
+                resistencia++;
+                notificar();
+            }
+        }
+
+        // Comportamiento de ataque
+        if(salud <= SALUD_CRITICA) {
+            // Si la salud actual es menor a la crítica
+            // el jugador entra en modo Berserk
+            this.setAttackBehavior(new AtaqueBerserk());
+        } else {
+            this.setAttackBehavior(new AtaqueNormal());
+        }
+
+        // Ataque
+        if(teclado.ataque && (resistencia > 0)) {
+            attackBehavior.atacar();
+            recuperado = false;
+            recuperacion = 0;
+        } else {
             if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
                 recuperacion++;
                 notificar();

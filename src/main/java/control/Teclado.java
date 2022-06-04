@@ -23,6 +23,7 @@ public final class Teclado implements KeyListener {
     public boolean derecha;
 
     public boolean correr;
+    public boolean ataque;
 
     public boolean salir;
 
@@ -38,6 +39,7 @@ public final class Teclado implements KeyListener {
         derecha = teclas[KeyEvent.VK_D];
 
         correr = teclas[KeyEvent.VK_SHIFT];
+        ataque = teclas[KeyEvent.VK_L];
 
         salir = teclas[KeyEvent.VK_ESCAPE];
     }

@@ -2,6 +2,7 @@ package juego;
 
 import control.Teclado;
 import entes.criaturas.Jugador;
+import entes.criaturas.Zombie;
 import graficos.Pantalla;
 import graficos.Sprite;
 import graficos.observer.Hud;
@@ -56,6 +57,9 @@ public class Juego extends Canvas implements Runnable{
     // Jugador
     private static Jugador jugador;
 
+    // Enemigo Final
+    private static Zombie enemigofinal;
+
     // Imagen en buffer, en blanco
     private static BufferedImage imagen =
             new BufferedImage(ANCHO,ALTO,BufferedImage.TYPE_INT_RGB);
@@ -86,6 +90,9 @@ public class Juego extends Canvas implements Runnable{
 
         // Creamos al jugador
         jugador = new Jugador(mapa, teclado,992,1900, Sprite.ABAJO0);
+        // Creamos al enemigo final
+        enemigofinal = new Zombie(1,"Viale",800);
+
         // Creamos el HUD del jugador;
         hud = new Hud(jugador);
         // Agregamos el HUD como Observer de Jugador
@@ -152,6 +159,7 @@ public class Juego extends Canvas implements Runnable{
         teclado.actualizar();
 
         jugador.actualizar();
+        enemigofinal.actualizar();
 
         // Acciones que se toman dependiendo de las teclas presionadas
         if (teclado.salir){
@@ -180,6 +188,7 @@ public class Juego extends Canvas implements Runnable{
         mapa.mostrar(jugador.getPosicionX() - pantalla.getAncho()/2 + jugador.getSprite().getLado()/2 ,
                 jugador.getPosicionY() - pantalla.getAlto()/2 + jugador.getSprite().getLado()/2, pantalla);
         jugador.mostrar(pantalla);
+        enemigofinal.mostrar(pantalla);
 
         // Método para copiar el array de Pantalla al de Juego
         System.arraycopy(pantalla.pixeles,0,pixeles,0,pixeles.length);

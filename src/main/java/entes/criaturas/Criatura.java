@@ -1,6 +1,7 @@
 package entes.criaturas;
 
 import entes.Ente;
+import entes.comportamientos.AttackBehavior;
 import graficos.Pantalla;
 import graficos.Sprite;
 
@@ -12,9 +13,12 @@ public abstract class Criatura extends Ente {
     // Movimiento de la criatura
     protected boolean enMovimiento = false;
 
-    // Estadisticas de personaje
+    // Estadísticas de personaje
     protected int vidaMax;
     protected int salud;
+
+    // Comportamientos
+    protected AttackBehavior attackBehavior;
 
     @Override
     public void actualizar() {
@@ -53,7 +57,7 @@ public abstract class Criatura extends Ente {
         }
     }
 
-    /** TODO SOLUCIONAR
+    /**
      * Método enColision
      * Comprueba si la criatura se está colisionando con un cuadro sólido
      * @return Si la criatura esta en colisión
@@ -61,17 +65,17 @@ public abstract class Criatura extends Ente {
     private boolean enColision(int desplazamientoX, int desplazamientoY) {
         // Asumimos que por defecto no estamos colisionando con nada
         boolean colision = false;
-
+        // TODO SOLVE
         /*
         // Posición siguiente del Jugador
         int posX = x + desplazamientoX;
         int posY = y + desplazamientoY;
 
         // Margen del Tile de Jugador que colisionaría
-        int margenIzquierdo = 1;
-        int margenDerecho = -1;
-        int margenSuperior = 1;
-        int margenInferior = -1;
+        int margenIzquierdo = -8;
+        int margenDerecho = 32;
+        int margenSuperior = -32;
+        int margenInferior = 0;
 
         // Bordes del Tile de Jugador
         int bordeIzq = (posX + margenDerecho)/sprite.getLado();
@@ -101,6 +105,23 @@ public abstract class Criatura extends Ente {
         return sprite;
     }
 
-
     public abstract void mostrar(Pantalla pantalla);
+
+    /**
+     * Método setAttackBehavior.
+     * Utilizado para definir un comportamiento de ataque
+     * @param ab Comportamiento de ataque
+     */
+    public void setAttackBehavior(AttackBehavior ab) {
+        this.attackBehavior = ab;
+    }
+
+    /**
+     * Método performAttack
+     * Realiza el ataque correspondiente dependiendo del
+     * comportamiento que tenga asignado
+     */
+    public void performAttack() {
+        attackBehavior.atacar();
+    }
 }

@@ -1,5 +1,6 @@
 package graficos;
 
+import entes.criaturas.Enemigo;
 import entes.criaturas.Jugador;
 import mapa.cuadro.Cuadro;
 
@@ -47,6 +48,7 @@ public final class Pantalla {
      * @param cuadro Cuadro que se dibujará
      */
     public void mostrarCuadro(int compensacionX, int compensacionY, Cuadro cuadro) {
+
         compensacionX -= diferenciaX;
         compensacionY -= diferenciaY;
 
@@ -65,6 +67,7 @@ public final class Pantalla {
                         cuadro.sprite.pixeles[x + y * cuadro.sprite.getLado()];
             } // Fin del for x
         } // Fin del for y
+
     }
 
     public void mostrarJugador(int compensacionX, int compensacionY, Jugador jugador) {
@@ -88,6 +91,10 @@ public final class Pantalla {
                         jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()];
             } // Fin del for x
         } // Fin del for y
+    }
+
+    public void mostrarEnemigo(int compensacionX, int compensacionY) {
+        mostrarCuadro(compensacionX,compensacionY,Cuadro.ENEMIGO);
     }
 
     public void setDiferencia(final int diferenciaX,final int diferenciaY) {
