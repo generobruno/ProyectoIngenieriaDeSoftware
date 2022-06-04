@@ -4,7 +4,9 @@ jobs:
   build:
     docker:
       - image: cimg/openjdk:17.0.2
-
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: mvn package
+      - run: ./mvnw package
