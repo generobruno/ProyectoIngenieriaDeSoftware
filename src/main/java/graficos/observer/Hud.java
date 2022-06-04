@@ -66,4 +66,25 @@ public class Hud implements Observer, Display{
 
     }
 
+    // Getters de las variables del Hud
+
+    public int getEstamina() {
+        return estamina;
+    }
+
+    public int getSalud() {
+        return salud;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public Jugador getPlayer() {
+        return player;
+    }
 }
