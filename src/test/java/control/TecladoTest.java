@@ -11,7 +11,8 @@ class TecladoTest {
     //TODO Arreglar o ver esto
     @Test
     void actualizar() {
-        
+        assertEquals(2,2+3);
+
     }
 
 }
