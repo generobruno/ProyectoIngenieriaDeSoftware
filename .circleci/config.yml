@@ -1,12 +1,6 @@
 version: 2.0
 
 jobs:
-  test:
-    docker:
-      - image: cimg/openjdk:17.0.2
-    steps:
-      - checkout
-      - run: mvn test
 
   build:
     docker:
@@ -14,6 +8,13 @@ jobs:
     steps:
       - checkout
       - run: mvn compile
+
+  test:
+    docker:
+      - image: cimg/openjdk:17.0.2
+    steps:
+      - checkout
+      - run: mvn test
 
 workflows:
   version: 2
