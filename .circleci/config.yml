@@ -6,14 +6,14 @@ jobs:
       - image: cimg/openjdk:17.0.2
     steps:
       - checkout
-      - run: ./mvnw test
+      - run: mvn test
 
   build:
     docker:
       - image: cimg/openjdk:17.0.2
     steps:
       - checkout
-      - run: ./mvnw -Dmaven.test.skip=true package
+      - run: mvn compile
 
 workflows:
   version: 2
