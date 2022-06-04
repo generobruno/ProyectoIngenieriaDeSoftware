@@ -8,4 +8,7 @@ orbs:
 workflows:
   maven_test:
     jobs:
-      - maven/test
+      - maven/test:
+          command: '-X compile'
+          command: '-X test'
+          executor: java17
