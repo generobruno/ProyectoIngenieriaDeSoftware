@@ -1,6 +1,7 @@
 package entes.criaturas;
 
 import entes.Ente;
+import entes.comportamientos.AttackBehavior;
 import graficos.Pantalla;
 import graficos.Sprite;
 
@@ -15,6 +16,9 @@ public abstract class Criatura extends Ente {
     // Estadísticas de personaje
     protected int vidaMax;
     protected int salud;
+
+    // Comportamientos
+    protected AttackBehavior attackBehavior;
 
     @Override
     public void actualizar() {
@@ -101,6 +105,23 @@ public abstract class Criatura extends Ente {
         return sprite;
     }
 
-
     public abstract void mostrar(Pantalla pantalla);
+
+    /**
+     * Método setAttackBehavior.
+     * Utilizado para definir un comportamiento de ataque
+     * @param ab Comportamiento de ataque
+     */
+    public void setAttackBehavior(AttackBehavior ab) {
+        this.attackBehavior = ab;
+    }
+
+    /**
+     * Método performAttack
+     * Realiza el ataque correspondiente dependiendo del
+     * comportamiento que tenga asignado
+     */
+    public void performAttack() {
+        attackBehavior.atacar();
+    }
 }

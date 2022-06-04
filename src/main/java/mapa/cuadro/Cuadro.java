@@ -36,6 +36,8 @@ public class Cuadro {
     public static final Cuadro LADO_IZQ = new Cuadro(Sprite.LADO_IZQ);
     public static final Cuadro LADO_HORIZ = new Cuadro(Sprite.LADO_HORIZ);
 
+    public static final Cuadro ENEMIGO = new Cuadro(Sprite.ABAJO_E0);
+
     // Fin de la colección
 
     /**

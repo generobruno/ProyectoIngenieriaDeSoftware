@@ -6,8 +6,8 @@ public class Enemigo extends Criatura {
     // ID única para cada enemigo
     private int idEnemigo;
     // Posición del enemigo
-    private int posicionX;
-    private int posicionY;
+    protected int posicionX;
+    protected int posicionY;
     // Nombre del enemigo
     private String nombre;
 

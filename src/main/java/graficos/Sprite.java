@@ -37,6 +37,12 @@ public final class Sprite {
     public static final Sprite ARRIBA2 = new Sprite(64, 3, 3, 0, HojaSprites.jugador);
     // Fin colección de Sprites Personaje
 
+    // Colección de Sprites Enemigo Final
+    public static final Sprite ABAJO_E0 = new Sprite(64, 0, 0, 0, HojaSprites.enemigoFinal);
+    public static final Sprite ABAJO_E1 = new Sprite(64, 1, 0, 0, HojaSprites.enemigoFinal);
+    public static final Sprite ABAJO_E2 = new Sprite(64, 3, 0, 0, HojaSprites.enemigoFinal);
+    // Fin colección de Sprites Enemigo Final
+
     // Colección de Sprites Mapa
     public static final Sprite VACIO = new Sprite(32, 0);
 /*
