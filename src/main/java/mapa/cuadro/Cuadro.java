@@ -20,8 +20,8 @@ public class Cuadro {
     public static final int LADO = 64;
 
     // Colección de Cuadros
-    public static final Cuadro VACIO = new Cuadro(Sprite.VACIO);
-    public static final Cuadro PISO = new Cuadro(Sprite.PISO);
+    public static final Cuadro VACIO = new Cuadro(Sprite.VACIO,false);
+    public static final Cuadro PISO = new Cuadro(Sprite.PISO,false);
     public static final Cuadro ESQUINA1A = new Cuadro(Sprite.ESQUINA1A);
     public static final Cuadro ESQUINA1B = new Cuadro(Sprite.ESQUINA1B);
     public static final Cuadro ESQUINA1ARX = new Cuadro(Sprite.ESQUINA1ARX);
@@ -40,13 +40,12 @@ public class Cuadro {
 
     /**
      * Constructor del Cuadro
-     * Por defecto, el cuadro es sólido
+     * Por defecto, el cuadro no es sólido
      * @param sprite Sprite del cuadro.
      */
     public Cuadro(Sprite sprite) {
         this.sprite = sprite;
-        //TODO Ver si cambiar el por defecto
-        solido = false;
+        solido = true;
     }
 
     /**

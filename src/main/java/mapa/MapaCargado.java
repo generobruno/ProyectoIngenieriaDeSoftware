@@ -15,7 +15,6 @@ public class MapaCargado extends Mapa{
      * Constructor de la clase. Crea un mapa aleatorio.
      * @param ruta ruta desde donde se carga el Mapa
      */
-
     public MapaCargado(String ruta) {
         super(ruta);
     }
@@ -38,6 +37,7 @@ public class MapaCargado extends Mapa{
             e.printStackTrace();
         }
     }
+
     /**
      * Método generarMapa
      * genera un array ordenado de los cuadros que forman el mapa; asigna a cada color un cuadro
