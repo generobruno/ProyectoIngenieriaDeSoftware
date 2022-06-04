@@ -2,6 +2,7 @@ package graficos;
 
 import entes.criaturas.Enemigo;
 import entes.criaturas.Jugador;
+import entes.criaturas.Zombie;
 import mapa.cuadro.Cuadro;
 
 /**
@@ -93,8 +94,31 @@ public final class Pantalla {
         } // Fin del for y
     }
 
-    public void mostrarEnemigo(int compensacionX, int compensacionY) {
-        mostrarCuadro(compensacionX,compensacionY,Cuadro.ENEMIGO);
+//    public void mostrarEnemigo(int compensacionX, int compensacionY) {
+//        mostrarCuadro(compensacionX,compensacionY,Cuadro.ENEMIGO);
+//    }
+
+    public void mostrarEnemigo(int compensacionX, int compensacionY, Enemigo jugador) {
+        compensacionX -= diferenciaX;
+        compensacionY -= diferenciaY;
+
+        for(int y = 0; y < jugador.getSprite().getLado(); y++) {
+            int posicionY = y + compensacionY;
+            for(int x = 0; x < jugador.getSprite().getLado(); x++) {
+                int posicionX = x + compensacionX;
+                // Condicional para que no se dibujen los cuadros fuera de la pantalla
+                if(posicionX < -jugador.getSprite().getLado() || posicionX >= ancho || posicionY < 0 || posicionY >= alto) {
+                    break;
+                }
+                if(posicionX < 0) {
+                    posicionX = 0;
+                }
+                // Condicional que evita que se dibuje el fondo blanco el personaje
+                if(jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()] < 0xffffffff)
+                    pixeles[posicionX + posicionY * ancho] =
+                            jugador.getSprite().pixeles[x + y * jugador.getSprite().getLado()];
+            } // Fin del for x
+        } // Fin del for y
     }
 
     public void setDiferencia(final int diferenciaX,final int diferenciaY) {

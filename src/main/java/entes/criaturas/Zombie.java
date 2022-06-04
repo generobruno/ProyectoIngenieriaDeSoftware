@@ -4,6 +4,8 @@ import graficos.HojaSprites;
 import graficos.Pantalla;
 import graficos.Sprite;
 
+import java.awt.*;
+
 public class Zombie extends Enemigo {
     // Hoja de sprites de Zombies
     private static HojaSprites hojaZombie;
@@ -22,11 +24,12 @@ public class Zombie extends Enemigo {
 
         // Posición inicial del enemigo
         posicionX = 992;
-        posicionY = 140;
+        posicionY = 1800;
     }
 
     @Override
     public void mostrar(Pantalla pantalla) {
-        pantalla.mostrarEnemigo(x,y);
+        pantalla.mostrarEnemigo(x,y, this);
     }
+
 }
