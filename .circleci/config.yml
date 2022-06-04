@@ -1,14 +1,10 @@
-version: 2.1
-executors:
-  java17:
+version: 2.0
+
+jobs:
+  build:
     docker:
-      - image: 'cimg/openjdk:17.0.2'
-orbs:
-  maven: circleci/maven@1.3.0
-workflows:
-  maven_test:
-    jobs:
-      - maven/test:
-          command: '-X compile'
-          command: '-X test'
-          executor: java17
+      - image: cimg/openjdk:17.0.2
+
+    steps:
+      - checkout
+      - run: ./mvnw package
