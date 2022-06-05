@@ -53,7 +53,7 @@ public abstract class Mapa {
      * @param compensacionY Movimiento del jugador en el eje y
      * @param pantalla Pantalla donde se muestra el mapa
      */
-    public void mostrar(final int compensacionX, final int compensacionY, final Pantalla pantalla) {
+    public void dibujar(final int compensacionX, final int compensacionY, final Pantalla pantalla) {
 
         pantalla.setDiferencia(compensacionX,compensacionY);
 

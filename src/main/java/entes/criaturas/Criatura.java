@@ -105,7 +105,7 @@ public abstract class Criatura extends Ente {
         return sprite;
     }
 
-    public abstract void mostrar(Pantalla pantalla);
+    public abstract void dibujar(Pantalla pantalla);
 
     /**
      * Método setAttackBehavior.

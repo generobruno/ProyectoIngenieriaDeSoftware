@@ -2,7 +2,7 @@ package juego;
 
 import control.Teclado;
 import entes.criaturas.Jugador;
-import entes.criaturas.Zombie;
+import entes.criaturas.Viale;
 import graficos.Pantalla;
 import graficos.Sprite;
 import graficos.observer.Hud;
@@ -58,7 +58,7 @@ public class Juego extends Canvas implements Runnable{
     private static Jugador jugador;
 
     // Enemigo Final
-    private static Zombie enemigofinal;
+    private static Viale enemigofinal;
 
     // Imagen en buffer, en blanco
     private static BufferedImage imagen =
@@ -91,7 +91,7 @@ public class Juego extends Canvas implements Runnable{
         // Creamos al jugador
         jugador = new Jugador(mapa, teclado,992,1900, Sprite.ABAJO0);
         // Creamos al enemigo final
-        enemigofinal = new Zombie(1,"Viale",800);
+        enemigofinal = new Viale(1,"Viale",800);
 
         // Creamos el HUD del jugador;
         hud = new Hud(jugador);
@@ -174,7 +174,7 @@ public class Juego extends Canvas implements Runnable{
      * Muestra el juego en pantalla, aumentando la cantidad de frames
      * por segundo mostrados.
      */
-    private void mostrar() {
+    private void dibujar() {
         // Se crea un buffer, es decir, un espacio de memoria
         // donde guardamos las imágenes
         BufferStrategy estrategia = getBufferStrategy();
@@ -185,10 +185,11 @@ public class Juego extends Canvas implements Runnable{
         }
 
         //pantalla.limpiar();
-        mapa.mostrar(jugador.getPosicionX() - pantalla.getAncho()/2 + jugador.getSprite().getLado()/2 ,
+        mapa.dibujar(jugador.getPosicionX() - pantalla.getAncho()/2 + jugador.getSprite().getLado()/2 ,
                 jugador.getPosicionY() - pantalla.getAlto()/2 + jugador.getSprite().getLado()/2, pantalla);
-        jugador.mostrar(pantalla);
-        enemigofinal.mostrar(pantalla);
+        jugador.dibujar(pantalla);
+        enemigofinal.dibujar(pantalla);
+        //pantalla.mostrarCuadro();
 
         // Método para copiar el array de Pantalla al de Juego
         System.arraycopy(pantalla.pixeles,0,pixeles,0,pixeles.length);
@@ -203,6 +204,7 @@ public class Juego extends Canvas implements Runnable{
         g.drawString(CONTADOR_FPS,10,35);
         g.drawString("X: " + jugador.getPosicionX(),10,50);
         g.drawString("Y: " + jugador.getPosicionY(),10,65);
+
 
         // Se muestra el HUD
         hud.displayInfo(g);
@@ -258,8 +260,9 @@ public class Juego extends Canvas implements Runnable{
                 actualizar();
                 delta--;
             }
-            mostrar();
+            dibujar();
 
+            enemigofinal.dibujar(pantalla);
             // Si la diferencia de tiempo entre el momento que se ejecuta esta línea y la
             // referencia es mayor a un segundo se actualiza el contador y se muestran
             // las aps y los fps
