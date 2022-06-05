@@ -7,7 +7,7 @@ public class RegistroEnemigos {
 
         switch (idEnemigo) {
             case 1:
-                enemigo = new Zombie(idEnemigo, "Zombie", 800);
+                enemigo = new Viale(idEnemigo, "Viale", 800);
                 break;
         }
 

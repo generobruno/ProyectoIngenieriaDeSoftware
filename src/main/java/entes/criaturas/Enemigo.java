@@ -1,6 +1,7 @@
 package entes.criaturas;
 
 import graficos.Pantalla;
+import graficos.observer.Observer;
 
 public class Enemigo extends Criatura {
     // ID única para cada enemigo
@@ -27,7 +28,8 @@ public class Enemigo extends Criatura {
     }
 
     @Override
-    public void mostrar(Pantalla pantalla) {
+    public void dibujar(Pantalla pantalla) {
+
     }
 
     /**
@@ -72,4 +74,5 @@ public class Enemigo extends Criatura {
     public int getSalud() {
         return salud;
     }
+
 }

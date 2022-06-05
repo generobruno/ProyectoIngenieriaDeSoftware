@@ -208,7 +208,7 @@ public class Jugador extends Criatura implements Subject {
      * @param pantalla Pantalla donde se muestra el jugador
      */
     @Override
-    public void mostrar(Pantalla pantalla) {
+    public void dibujar(Pantalla pantalla) {
         pantalla.mostrarJugador(x,y,this);
     }
 
