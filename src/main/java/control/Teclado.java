@@ -59,4 +59,27 @@ public final class Teclado implements KeyListener {
     // Reconoce el pulsado de una tecla
     @Override
     public void keyTyped(KeyEvent e) {  }
+
+    public void testTeclado (int n){
+        switch (n){
+            case 1:
+                arriba = true;
+                break;
+            case 2:
+                abajo = true;
+                break;
+            case 3:
+                izquierda = true;
+                break;
+            case 4:
+                derecha = true;
+                break;
+            case 5:
+                correr = true;
+                break;
+            case 6:
+                ataque = true;
+                break;
+        }
+    }
 }
