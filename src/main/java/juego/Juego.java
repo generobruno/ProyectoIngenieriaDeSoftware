@@ -28,8 +28,8 @@ public class Juego extends Canvas implements Runnable{
     // Sirve para identificar la clase en caso de reutilizarla en otras circunstancias
     //private static final long serialVersionUID = 1L;
 
-    private static final int ANCHO = 800;
-    private static final int ALTO = 600;
+    private static final int ANCHO = 1280;
+    private static final int ALTO = 720;
 
     // Variable booleana que nos permite saber cuando el juego está en ejecución.
     // Al ser Volatile, la palabra no puede ejecutarse simultáneamente por 2 threads.
@@ -102,7 +102,7 @@ public class Juego extends Canvas implements Runnable{
         //Para que se cierre la ventana al hacer clic en la cruz
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Para que el usuario no pueda cambiar el tamaño de la ventana
-        ventana.setResizable(false);
+        ventana.setResizable(true);
         ventana.setLayout(new BorderLayout());
         // Hace que el canvas tengas las mismas dimensiones que la ventana
         ventana.add(this, BorderLayout.CENTER);

@@ -14,17 +14,18 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HudTest {
-
+    Jugador j;
+    Teclado teclado;
+    MapaGenerado mapa;
+    void escenario() {
+        teclado = new Teclado();
+        mapa = new MapaGenerado(320, 320);
+        j = new Jugador(mapa, teclado, 0, 0, Sprite.VACIO);
+    }
     @Test
     void update() {
         // Creamos los Objetos necesarios para instanciar a un jugador
-        Mapa m = new MapaCargado("/texturas/MapaPrincipal64px.png");
-        Teclado teclado = new Teclado();
-        Sprite sprite = new Sprite(64,0xff000000);
-
-        // Creamos el Jugador
-        Jugador j = new Jugador(m,teclado,sprite);
-
+        escenario();
         // Creamos el Hud
         Hud hud = new Hud(j);
 
