@@ -8,8 +8,7 @@ import graficos.Sprite;
 import graficos.observer.Observer;
 import mapa.Mapa;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Jugador extends Criatura implements Subject {
     // Teclado con el que se mueve al jugador
