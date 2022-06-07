@@ -1,9 +1,5 @@
 package entes.criaturas;
 
-import control.Teclado;
-import graficos.Sprite;
-import mapa.MapaGenerado;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
