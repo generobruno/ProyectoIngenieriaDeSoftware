@@ -3,7 +3,7 @@ package entes.criaturas;
 import control.Teclado;
 import graficos.Sprite;
 import mapa.MapaGenerado;
-import org.junit.BeforeClass;
+//import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +13,6 @@ class JugadorTest {
     Teclado teclado;
     MapaGenerado mapa;
 
-    @BeforeClass
     void escenario() {
         teclado = new Teclado();
         mapa = new MapaGenerado(320, 320);
