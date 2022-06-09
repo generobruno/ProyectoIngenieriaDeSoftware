@@ -40,7 +40,7 @@ public class Jugador extends Criatura implements Subject {
         this.vidaMax = 1000;
         this.salud = 1000;
 
-        // Comportamientos
+        // Comportamiento inicial
         attackBehavior = new AtaqueNormal(teclado,this);
     }
 
@@ -65,6 +65,13 @@ public class Jugador extends Criatura implements Subject {
 
         int desplazamientoX = 0;
         int desplazamientoY = 0;
+
+        // Código de muestra para disminuir salud
+        if(salud > SALUD_CRITICA){
+            salud--;
+            notificar();
+        }
+        // Fin del código de muestra
 
         // Movimiento del jugador
         gestionarMovimiento(desplazamientoX,desplazamientoY);
@@ -198,48 +205,96 @@ public class Jugador extends Criatura implements Subject {
 
         // Movimiento hacia arriba
         if(direccion == 'n') {
-            sprite = Sprite.ARRIBA0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.ARRIBA0_B;
+            } else {
+                sprite = Sprite.ARRIBA0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.ARRIBA1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ARRIBA1_B;
+                    } else {
+                        sprite = Sprite.ARRIBA1;
+                    }
                 } else {
-                    sprite = Sprite.ARRIBA2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ARRIBA2_B;
+                    } else {
+                        sprite = Sprite.ARRIBA2;
+                    }
                 }
             }
         }
 
         // Movimiento hacia abajo
         if(direccion == 's') {
-            sprite = Sprite.ABAJO0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.ABAJO0_B;
+            } else {
+                sprite = Sprite.ABAJO0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.ABAJO1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ABAJO1_B;
+                    } else {
+                        sprite = Sprite.ABAJO1;
+                    }
                 } else {
-                    sprite = Sprite.ABAJO2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ABAJO2_B;
+                    } else {
+                        sprite = Sprite.ABAJO2;
+                    }
                 }
             }
         }
 
         // Movimiento hacia la izquierda
         if(direccion == 'o') {
-            sprite = Sprite.IZQUIERDA0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.IZQUIERDA0_B;
+            } else {
+                sprite = Sprite.IZQUIERDA0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.IZQUIERDA1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.IZQUIERDA1_B;
+                    } else {
+                        sprite = Sprite.IZQUIERDA1;
+                    }
                 } else {
-                    sprite = Sprite.IZQUIERDA2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.IZQUIERDA2_B;
+                    } else {
+                        sprite = Sprite.IZQUIERDA2;
+                    }
                 }
             }
         }
 
         // Movimiento hacia la derecha
         if(direccion == 'e') {
-            sprite = Sprite.DERECHA0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.DERECHA0_B;
+            } else {
+                sprite = Sprite.DERECHA0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.DERECHA1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.DERECHA1_B;
+                    } else {
+                        sprite = Sprite.DERECHA1;
+                    }
                 } else {
-                    sprite = Sprite.DERECHA2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.DERECHA2_B;
+                    } else {
+                        sprite = Sprite.DERECHA2;
+                    }
                 }
             }
         }
