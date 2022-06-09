@@ -22,7 +22,7 @@ public class Viale extends Enemigo {
 
         // Posición inicial del enemigo
         this.posicionX = 992;
-        this.posicionY = 1800;
+        this.posicionY = 120;
     }
 
     @Override
