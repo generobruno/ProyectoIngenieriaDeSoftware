@@ -8,14 +8,12 @@ import graficos.Sprite;
 import graficos.observer.Observer;
 import mapa.Mapa;
 
-
-
 public class Jugador extends Criatura implements Subject {
     // Teclado con el que se mueve al jugador
     private Teclado teclado;
     // Animación del jugador
     private int animacion;
-    private int SALUD_CRITICA = 50;
+    private int SALUD_CRITICA = 100;
 
     // Estamina de Jugador
     private int resistencia = 600;
@@ -26,7 +24,6 @@ public class Jugador extends Criatura implements Subject {
     // Experiencia del Jugador
     private int nivel = 1;
     private int exp = 0;
-
 
 
     /**
@@ -43,8 +40,8 @@ public class Jugador extends Criatura implements Subject {
         this.vidaMax = 1000;
         this.salud = 1000;
 
-        // Comportamientos
-        attackBehavior = new AtaqueNormal();
+        // Comportamiento inicial
+        attackBehavior = new AtaqueNormal(teclado,this);
     }
 
     /**
@@ -69,43 +66,29 @@ public class Jugador extends Criatura implements Subject {
         int desplazamientoX = 0;
         int desplazamientoY = 0;
 
-        int velocidadMovimiento = 4;
-
-        // Aumenta hasta el número máximo que puede tener un int
-        if(animacion < 32767) {
-            animacion++;
-        } else {
-            animacion = 0;
+        // Código de muestra para disminuir salud
+        if(salud > SALUD_CRITICA){
+            salud--;
+            notificar();
         }
+        // Fin del código de muestra
 
-        // Correr
-        // El jugador tiene estamina
-        if(teclado.correr && (resistencia > 0)) {
-            velocidadMovimiento = 8;
-            recuperado = false;
-            recuperacion = 0;
-        } else { // El jugador no tiene estamina
-            velocidadMovimiento = 4;
-            if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
-                recuperacion++;
-                notificar();
-            }
-            if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) {
-                resistencia++;
-                notificar();
-            }
-        }
-
-        // Comportamiento de ataque
-        if(salud <= SALUD_CRITICA) {
-            // Si la salud actual es menor a la crítica
-            // el jugador entra en modo Berserk
-            this.setAttackBehavior(new AtaqueBerserk());
-        } else {
-            this.setAttackBehavior(new AtaqueNormal());
-        }
-
+        // Movimiento del jugador
+        gestionarMovimiento(desplazamientoX,desplazamientoY);
+        // Comportamiento de Ataque
+        gestionarComportamiento();
         // Ataque
+        gestionarAtaque();
+        // Animaciones
+        gestionarAnimacion();
+    }
+
+    /**
+     * Método gestionarAtaque.
+     * Utilizado para que el jugador realice un ataque si se presiona la tecla
+     * correspondiente y tiene estamina disponible.
+     */
+    public void gestionarAtaque() {
         if(teclado.ataque && (resistencia > 0)) {
             attackBehavior.atacar();
             recuperado = false;
@@ -120,34 +103,69 @@ public class Jugador extends Criatura implements Subject {
                 notificar();
             }
         }
+    }
 
-        if(teclado.arriba) {
-            desplazamientoY -= velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
+    /**
+     * Método gestionarComportamiento.
+     * Se encarga de cambiar el comportamiento de ataque del jugador
+     * dependiendo de la salud que este tenga.
+     */
+    public void gestionarComportamiento() {
+        if(salud <= SALUD_CRITICA) {
+            // Si la salud actual es menor a la crítica
+            // el jugador entra en modo Berserk
+            this.setAttackBehavior(new AtaqueBerserk(teclado,this));
+        } else {
+            this.setAttackBehavior(new AtaqueNormal(teclado,this));
+        }
+    }
+
+    /**
+     * Método gestionarMovimiento.
+     * Hace que el jugador se mueve por el mapa dependiendo de las teclas que se estén
+     * presionando. El jugador también puede correr si se presiona la tecla determinada
+     * y tiene la estamina suficiente.
+     * @param desplazamientoX Desplazamiento del jugador por el mapa en el eje x
+     * @param desplazamientoY Desplazamiento del jugador por el mapa en el eje y
+     */
+    public void gestionarMovimiento(int desplazamientoX, int desplazamientoY) {
+        // Velocidad de movimiento inicial
+        int velocidadMovimiento = 4;
+
+        // Correr
+        // El jugador tiene estamina
+        if(teclado.correr && (resistencia > 0)) {
+            velocidadMovimiento = 8;
+            recuperado = false;
+            recuperacion = 0;
+        } else { // El jugador no tiene estamina
+            velocidadMovimiento = 4;
+            if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
+                recuperacion++;
                 notificar();
             }
+            if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) { // Cool-down de recuperación
+                resistencia++;
+                notificar();
+            }
+        }
+
+        // Movimiento dependiendo de la tecla
+        if(teclado.arriba) {
+            desplazamientoY -= velocidadMovimiento;
+            gestionarEstamina();
         }
         if(teclado.abajo) {
             desplazamientoY += velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
         if(teclado.derecha) {
             desplazamientoX += velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
         if(teclado.izquierda) {
             desplazamientoX -= velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
 
         // El jugador solo se mueve si se presionó una tecla de movimiento
@@ -158,48 +176,129 @@ public class Jugador extends Criatura implements Subject {
         } else {
             enMovimiento = false;
         }
+    }
 
-        // Animaciones
+    /**
+     * Método gestionarEstamina.
+     * Se encarga de disminuir la estamina del jugador, si es que
+     * este tiene estamina disponible.
+     */
+    public void gestionarEstamina() {
+        if(teclado.correr && (resistencia > 0)) {
+            resistencia--;
+            notificar();
+        }
+    }
+
+    /**
+     * Método gestionarAnimacion.
+     * Cambia el sprite del jugador dependiendo de cómo se está
+     * moviendo.
+     */
+    public void gestionarAnimacion() {
+        // Aumenta hasta el número máximo que puede tener un int
+        if(animacion < 32767) {
+            animacion++;
+        } else {
+            animacion = 0;
+        }
+
+        // Movimiento hacia arriba
         if(direccion == 'n') {
-            sprite = Sprite.ARRIBA0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.ARRIBA0_B;
+            } else {
+                sprite = Sprite.ARRIBA0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.ARRIBA1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ARRIBA1_B;
+                    } else {
+                        sprite = Sprite.ARRIBA1;
+                    }
                 } else {
-                    sprite = Sprite.ARRIBA2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ARRIBA2_B;
+                    } else {
+                        sprite = Sprite.ARRIBA2;
+                    }
                 }
             }
         }
+
+        // Movimiento hacia abajo
         if(direccion == 's') {
-            sprite = Sprite.ABAJO0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.ABAJO0_B;
+            } else {
+                sprite = Sprite.ABAJO0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.ABAJO1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ABAJO1_B;
+                    } else {
+                        sprite = Sprite.ABAJO1;
+                    }
                 } else {
-                    sprite = Sprite.ABAJO2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.ABAJO2_B;
+                    } else {
+                        sprite = Sprite.ABAJO2;
+                    }
                 }
             }
         }
+
+        // Movimiento hacia la izquierda
         if(direccion == 'o') {
-            sprite = Sprite.IZQUIERDA0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.IZQUIERDA0_B;
+            } else {
+                sprite = Sprite.IZQUIERDA0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.IZQUIERDA1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.IZQUIERDA1_B;
+                    } else {
+                        sprite = Sprite.IZQUIERDA1;
+                    }
                 } else {
-                    sprite = Sprite.IZQUIERDA2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.IZQUIERDA2_B;
+                    } else {
+                        sprite = Sprite.IZQUIERDA2;
+                    }
                 }
             }
         }
+
+        // Movimiento hacia la derecha
         if(direccion == 'e') {
-            sprite = Sprite.DERECHA0;
+            if(salud <= SALUD_CRITICA){
+                sprite = Sprite.DERECHA0_B;
+            } else {
+                sprite = Sprite.DERECHA0;
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
-                    sprite = Sprite.DERECHA1;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.DERECHA1_B;
+                    } else {
+                        sprite = Sprite.DERECHA1;
+                    }
                 } else {
-                    sprite = Sprite.DERECHA2;
+                    if(salud <= SALUD_CRITICA) {
+                        sprite = Sprite.DERECHA2_B;
+                    } else {
+                        sprite = Sprite.DERECHA2;
+                    }
                 }
             }
         }
+
     }
 
     /**
@@ -250,6 +349,15 @@ public class Jugador extends Criatura implements Subject {
     public int getNivel() {
         return this.nivel;
     }
+
+    /**
+     * Método disminuirResistencia.
+     * Disminuye la resistencia del jugador.
+     */
+    public void disminuirResistencia() {
+        resistencia -= 5;
+    }
+
     // Implementación del Patron Observer - Sujeto Concreto
     @Override
     public void agregarObs(Observer observer) {
@@ -267,4 +375,5 @@ public class Jugador extends Criatura implements Subject {
             observer.update();
         }
     }
+
 }

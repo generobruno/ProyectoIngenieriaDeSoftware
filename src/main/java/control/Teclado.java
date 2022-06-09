@@ -60,6 +60,10 @@ public final class Teclado implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {  }
 
+    /**
+     * Método para probar el teclado
+     * @param n tecla a testear.
+     */
     public void testTeclado (int n){
         switch (n){
             case 1:
@@ -82,4 +86,5 @@ public final class Teclado implements KeyListener {
                 break;
         }
     }
+
 }

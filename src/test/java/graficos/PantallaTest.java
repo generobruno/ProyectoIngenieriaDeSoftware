@@ -6,11 +6,4 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PantallaTest {
 
-    @Test
-    void limpiar() {
-    }
-
-    @Test
-    void mostrar() {
-    }
 }

@@ -17,6 +17,7 @@ public class HojaSprites {
 
     // Colección de hojas de sprites
     public static HojaSprites jugador = new HojaSprites("/texturas/SpriteSamid.png",320,320);
+    public static HojaSprites jugadorBerserk = new HojaSprites("/texturas/SpriteSamidBerserk.png",320,320);
     public static HojaSprites enemigoFinal = new HojaSprites("/texturas/SpriteViale.png",320,320);
     public static HojaSprites texturasFinalReducidas = new HojaSprites("/texturas/SpriteMapaPrincipalReducido.png",320,320);
     //TODO eliminar esto de abajo cuando empiece a leer bien los Sprites de la Hoja de Sprites de Arriba
