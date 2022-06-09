@@ -22,43 +22,51 @@ public final class Sprite {
     // Colección de Sprites Personaje
     public static final Sprite ABAJO0 = new Sprite(64, 0, 0, 0, HojaSprites.jugador);
     public static final Sprite ABAJO1 = new Sprite(64, 1, 0, 0, HojaSprites.jugador);
-    public static final Sprite ABAJO2 = new Sprite(64, 3, 0, 0, HojaSprites.jugador);
+    public static final Sprite ABAJO2 = new Sprite(64, 2, 0, 0, HojaSprites.jugador);
+    public static final Sprite ABAJOGOLPE = new Sprite(64, 3, 0, 0, HojaSprites.jugador);
 
     public static final Sprite DERECHA0 = new Sprite(64, 0, 1, 0, HojaSprites.jugador);
     public static final Sprite DERECHA1 = new Sprite(64, 1, 1, 0, HojaSprites.jugador);
-    public static final Sprite DERECHA2 = new Sprite(64, 4, 1, 0, HojaSprites.jugador);
+    public static final Sprite DERECHA2 = new Sprite(64, 2, 1, 0, HojaSprites.jugador);
+    public static final Sprite DERECHAGOLPE = new Sprite(64, 3, 1, 0, HojaSprites.jugador);
 
     public static final Sprite IZQUIERDA0 = new Sprite(64, 0, 2, 0, HojaSprites.jugador);
-    public static final Sprite IZQUIERDA1 = new Sprite(64, 3, 2, 0, HojaSprites.jugador);
-    public static final Sprite IZQUIERDA2 = new Sprite(64, 4, 2, 0, HojaSprites.jugador);
+    public static final Sprite IZQUIERDA1 = new Sprite(64, 1, 2, 0, HojaSprites.jugador);
+    public static final Sprite IZQUIERDA2 = new Sprite(64, 2, 2, 0, HojaSprites.jugador);
+    public static final Sprite IZQUIERDAGOLPE = new Sprite(64, 3, 2, 0, HojaSprites.jugador);
 
     public static final Sprite ARRIBA0 = new Sprite(64, 0, 3, 0, HojaSprites.jugador);
     public static final Sprite ARRIBA1 = new Sprite(64, 1, 3, 0, HojaSprites.jugador);
-    public static final Sprite ARRIBA2 = new Sprite(64, 3, 3, 0, HojaSprites.jugador);
+    public static final Sprite ARRIBA2 = new Sprite(64, 2, 3, 0, HojaSprites.jugador);
+    public static final Sprite ARRIBAGOLPE = new Sprite(64, 3, 3, 0, HojaSprites.jugador);
     // Fin colección de Sprites Personaje
 
     // Colección sprites personaje berserk
     public static final Sprite ABAJO0_B = new Sprite(64, 0, 0, 0, HojaSprites.jugadorBerserk);
     public static final Sprite ABAJO1_B = new Sprite(64, 1, 0, 0, HojaSprites.jugadorBerserk);
     public static final Sprite ABAJO2_B = new Sprite(64, 2, 0, 0, HojaSprites.jugadorBerserk);
+    public static final Sprite ABAJOGOLPE_B = new Sprite(64, 3, 0, 0, HojaSprites.jugadorBerserk);
 
     public static final Sprite DERECHA0_B = new Sprite(64, 0, 1, 0, HojaSprites.jugadorBerserk);
     public static final Sprite DERECHA1_B = new Sprite(64, 1, 1, 0, HojaSprites.jugadorBerserk);
-    public static final Sprite DERECHA2_B = new Sprite(64, 3, 1, 0, HojaSprites.jugadorBerserk);
+    public static final Sprite DERECHA2_B = new Sprite(64, 2, 1, 0, HojaSprites.jugadorBerserk);
+    public static final Sprite DERECHAGOLPE_B = new Sprite(64, 3, 1, 0, HojaSprites.jugadorBerserk);
 
     public static final Sprite IZQUIERDA0_B = new Sprite(64, 0, 2, 0, HojaSprites.jugadorBerserk);
     public static final Sprite IZQUIERDA1_B = new Sprite(64, 2, 2, 0, HojaSprites.jugadorBerserk);
-    public static final Sprite IZQUIERDA2_B = new Sprite(64, 3, 2, 0, HojaSprites.jugadorBerserk);
+    public static final Sprite IZQUIERDA2_B = new Sprite(64, 2, 2, 0, HojaSprites.jugadorBerserk);
+    public static final Sprite IZQUIERDAGOLPE_B = new Sprite(64, 3, 2, 0, HojaSprites.jugadorBerserk);
 
     public static final Sprite ARRIBA0_B = new Sprite(64, 0, 3, 0, HojaSprites.jugadorBerserk);
     public static final Sprite ARRIBA1_B = new Sprite(64, 1, 3, 0, HojaSprites.jugadorBerserk);
     public static final Sprite ARRIBA2_B = new Sprite(64, 2, 3, 0, HojaSprites.jugadorBerserk);
+    public static final Sprite ARRIBAGOLPE_B = new Sprite(64, 3, 3, 0, HojaSprites.jugadorBerserk);
     // Fin colección de personaje berserk
 
     // Colección de Sprites Enemigo Final
     public static final Sprite ABAJO_E0 = new Sprite(64, 0, 0, 0, HojaSprites.enemigoFinal);
     public static final Sprite ABAJO_E1 = new Sprite(64, 1, 0, 0, HojaSprites.enemigoFinal);
-    public static final Sprite ABAJO_E2 = new Sprite(64, 3, 0, 0, HojaSprites.enemigoFinal);
+    public static final Sprite ABAJO_E2 = new Sprite(64, 2, 0, 0, HojaSprites.enemigoFinal);
     // Fin colección de Sprites Enemigo Final
 
     // Colección de Sprites Mapa

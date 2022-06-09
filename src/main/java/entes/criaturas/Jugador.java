@@ -298,7 +298,6 @@ public class Jugador extends Criatura implements Subject {
                 }
             }
         }
-
     }
 
     /**
