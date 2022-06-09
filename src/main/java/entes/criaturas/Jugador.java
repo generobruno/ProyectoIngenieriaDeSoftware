@@ -8,14 +8,12 @@ import graficos.Sprite;
 import graficos.observer.Observer;
 import mapa.Mapa;
 
-
-
 public class Jugador extends Criatura implements Subject {
     // Teclado con el que se mueve al jugador
     private Teclado teclado;
     // Animación del jugador
     private int animacion;
-    private int SALUD_CRITICA = 50;
+    private int SALUD_CRITICA = 100;
 
     // Estamina de Jugador
     private int resistencia = 600;
@@ -26,7 +24,6 @@ public class Jugador extends Criatura implements Subject {
     // Experiencia del Jugador
     private int nivel = 1;
     private int exp = 0;
-
 
 
     /**
@@ -44,7 +41,7 @@ public class Jugador extends Criatura implements Subject {
         this.salud = 1000;
 
         // Comportamientos
-        attackBehavior = new AtaqueNormal();
+        attackBehavior = new AtaqueNormal(teclado,this);
     }
 
     /**
@@ -71,17 +68,20 @@ public class Jugador extends Criatura implements Subject {
 
         // Movimiento del jugador
         gestionarMovimiento(desplazamientoX,desplazamientoY);
-
-        // Comportamiento de ataque
-        if(salud <= SALUD_CRITICA) {
-            // Si la salud actual es menor a la crítica
-            // el jugador entra en modo Berserk
-            this.setAttackBehavior(new AtaqueBerserk());
-        } else {
-            this.setAttackBehavior(new AtaqueNormal());
-        }
-
+        // Comportamiento de Ataque
+        gestionarComportamiento();
         // Ataque
+        gestionarAtaque();
+        // Animaciones
+        gestionarAnimacion();
+    }
+
+    /**
+     * Método gestionarAtaque.
+     * Utilizado para que el jugador realice un ataque si se presiona la tecla
+     * correspondiente y tiene estamina disponible.
+     */
+    public void gestionarAtaque() {
         if(teclado.ataque && (resistencia > 0)) {
             attackBehavior.atacar();
             recuperado = false;
@@ -96,9 +96,21 @@ public class Jugador extends Criatura implements Subject {
                 notificar();
             }
         }
+    }
 
-        // Animaciones
-        gestionarAnimacion();
+    /**
+     * Método gestionarComportamiento.
+     * Se encarga de cambiar el comportamiento de ataque del jugador
+     * dependiendo de la salud que este tenga.
+     */
+    public void gestionarComportamiento() {
+        if(salud <= SALUD_CRITICA) {
+            // Si la salud actual es menor a la crítica
+            // el jugador entra en modo Berserk
+            this.setAttackBehavior(new AtaqueBerserk(teclado,this));
+        } else {
+            this.setAttackBehavior(new AtaqueNormal(teclado,this));
+        }
     }
 
     /**
@@ -113,6 +125,7 @@ public class Jugador extends Criatura implements Subject {
         // Velocidad de movimiento inicial
         int velocidadMovimiento = 4;
 
+        // Correr
         // El jugador tiene estamina
         if(teclado.correr && (resistencia > 0)) {
             velocidadMovimiento = 8;
@@ -133,31 +146,19 @@ public class Jugador extends Criatura implements Subject {
         // Movimiento dependiendo de la tecla
         if(teclado.arriba) {
             desplazamientoY -= velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
         if(teclado.abajo) {
             desplazamientoY += velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
         if(teclado.derecha) {
             desplazamientoX += velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
         if(teclado.izquierda) {
             desplazamientoX -= velocidadMovimiento;
-            if(teclado.correr && (resistencia > 0)) {
-                resistencia--;
-                notificar();
-            }
+            gestionarEstamina();
         }
 
         // El jugador solo se mueve si se presionó una tecla de movimiento
@@ -167,6 +168,18 @@ public class Jugador extends Criatura implements Subject {
             enMovimiento = true;
         } else {
             enMovimiento = false;
+        }
+    }
+
+    /**
+     * Método gestionarEstamina.
+     * Se encarga de disminuir la estamina del jugador, si es que
+     * este tiene estamina disponible.
+     */
+    public void gestionarEstamina() {
+        if(teclado.correr && (resistencia > 0)) {
+            resistencia--;
+            notificar();
         }
     }
 
@@ -280,6 +293,14 @@ public class Jugador extends Criatura implements Subject {
      */
     public int getNivel() {
         return this.nivel;
+    }
+
+    /**
+     * Método disminuirResistencia.
+     * Disminuye la resistencia del jugador.
+     */
+    public void disminuirResistencia() {
+        resistencia -= 5;
     }
 
     // Implementación del Patron Observer - Sujeto Concreto
