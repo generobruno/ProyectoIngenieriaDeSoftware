@@ -8,9 +8,4 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TecladoTest {
 
-    @Test
-    void actualizar() {
-
-    }
-
 }
