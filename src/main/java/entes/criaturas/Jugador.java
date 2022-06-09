@@ -69,32 +69,8 @@ public class Jugador extends Criatura implements Subject {
         int desplazamientoX = 0;
         int desplazamientoY = 0;
 
-        int velocidadMovimiento = 4;
-
-        // Aumenta hasta el número máximo que puede tener un int
-        if(animacion < 32767) {
-            animacion++;
-        } else {
-            animacion = 0;
-        }
-
-        // Correr
-        // El jugador tiene estamina
-        if(teclado.correr && (resistencia > 0)) {
-            velocidadMovimiento = 8;
-            recuperado = false;
-            recuperacion = 0;
-        } else { // El jugador no tiene estamina
-            velocidadMovimiento = 4;
-            if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
-                recuperacion++;
-                notificar();
-            }
-            if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) {
-                resistencia++;
-                notificar();
-            }
-        }
+        // Movimiento del jugador
+        gestionarMovimiento(desplazamientoX,desplazamientoY);
 
         // Comportamiento de ataque
         if(salud <= SALUD_CRITICA) {
@@ -121,6 +97,40 @@ public class Jugador extends Criatura implements Subject {
             }
         }
 
+        // Animaciones
+        gestionarAnimacion();
+    }
+
+    /**
+     * Método gestionarMovimiento.
+     * Hace que el jugador se mueve por el mapa dependiendo de las teclas que se estén
+     * presionando. El jugador también puede correr si se presiona la tecla determinada
+     * y tiene la estamina suficiente.
+     * @param desplazamientoX Desplazamiento del jugador por el mapa en el eje x
+     * @param desplazamientoY Desplazamiento del jugador por el mapa en el eje y
+     */
+    public void gestionarMovimiento(int desplazamientoX, int desplazamientoY) {
+        // Velocidad de movimiento inicial
+        int velocidadMovimiento = 4;
+
+        // El jugador tiene estamina
+        if(teclado.correr && (resistencia > 0)) {
+            velocidadMovimiento = 8;
+            recuperado = false;
+            recuperacion = 0;
+        } else { // El jugador no tiene estamina
+            velocidadMovimiento = 4;
+            if(!recuperado && (recuperacion < RECUPERACION_MAX)) {
+                recuperacion++;
+                notificar();
+            }
+            if((recuperacion == RECUPERACION_MAX) && (resistencia < 600)) { // Cool-down de recuperación
+                resistencia++;
+                notificar();
+            }
+        }
+
+        // Movimiento dependiendo de la tecla
         if(teclado.arriba) {
             desplazamientoY -= velocidadMovimiento;
             if(teclado.correr && (resistencia > 0)) {
@@ -158,8 +168,22 @@ public class Jugador extends Criatura implements Subject {
         } else {
             enMovimiento = false;
         }
+    }
 
-        // Animaciones
+    /**
+     * Método gestionarAnimacion.
+     * Cambia el sprite del jugador dependiendo de cómo se está
+     * moviendo.
+     */
+    public void gestionarAnimacion() {
+        // Aumenta hasta el número máximo que puede tener un int
+        if(animacion < 32767) {
+            animacion++;
+        } else {
+            animacion = 0;
+        }
+
+        // Movimiento hacia arriba
         if(direccion == 'n') {
             sprite = Sprite.ARRIBA0;
             if(enMovimiento) {
@@ -170,6 +194,8 @@ public class Jugador extends Criatura implements Subject {
                 }
             }
         }
+
+        // Movimiento hacia abajo
         if(direccion == 's') {
             sprite = Sprite.ABAJO0;
             if(enMovimiento) {
@@ -180,6 +206,8 @@ public class Jugador extends Criatura implements Subject {
                 }
             }
         }
+
+        // Movimiento hacia la izquierda
         if(direccion == 'o') {
             sprite = Sprite.IZQUIERDA0;
             if(enMovimiento) {
@@ -190,6 +218,8 @@ public class Jugador extends Criatura implements Subject {
                 }
             }
         }
+
+        // Movimiento hacia la derecha
         if(direccion == 'e') {
             sprite = Sprite.DERECHA0;
             if(enMovimiento) {
@@ -200,6 +230,7 @@ public class Jugador extends Criatura implements Subject {
                 }
             }
         }
+
     }
 
     /**
@@ -250,6 +281,7 @@ public class Jugador extends Criatura implements Subject {
     public int getNivel() {
         return this.nivel;
     }
+
     // Implementación del Patron Observer - Sujeto Concreto
     @Override
     public void agregarObs(Observer observer) {
@@ -267,4 +299,5 @@ public class Jugador extends Criatura implements Subject {
             observer.update();
         }
     }
+
 }
