@@ -28,6 +28,9 @@ public class Juego extends Canvas implements Runnable{
     // Sirve para identificar la clase en caso de reutilizarla en otras circunstancias
     //private static final long serialVersionUID = 1L;
 
+    // Instancia del Juego
+    private static Juego instancia;
+
     private static final int ANCHO = 1280;
     private static final int ALTO = 720;
 
@@ -75,7 +78,7 @@ public class Juego extends Canvas implements Runnable{
      * Constructor de la clase Juego:
      * Crea la interfaz gráfica
      */
-    public Juego() {
+    private Juego() {
         setPreferredSize(new Dimension(ANCHO, ALTO));
 
         // Pantalla
@@ -115,11 +118,25 @@ public class Juego extends Canvas implements Runnable{
     }
 
     /**
+     * Método getInstance
+     * Implementación de Singleton para que no pueda existir más de una
+     * instancia de Juego.
+     * @return Instancia de Juego.
+     */
+    public static Juego getInstance() {
+        if(instancia == null) {
+            instancia = new Juego();
+        }
+        return instancia;
+    }
+
+    /**
      * Método main:
      * El main es público, ya que debemos poder acceder a él.
      */
     public static void main(String[] args) {
-        Juego juego = new Juego();
+        //Juego juego = new Juego();
+        Juego juego = Juego.getInstance();
 
         // Ejecutamos el juego con el método "iniciar()"
         juego.iniciar();
