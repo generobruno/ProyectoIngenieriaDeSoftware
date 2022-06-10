@@ -89,7 +89,7 @@ public class Jugador extends Criatura implements Subject {
      * correspondiente y tiene estamina disponible.
      */
     public void gestionarAtaque() {
-        if(teclado.ataque && (resistencia > 0)) {
+        if(teclado.ataque && (resistencia > 0) && !moving()) {
             attackBehavior.atacar();
             recuperado = false;
             recuperacion = 0;
@@ -210,6 +210,13 @@ public class Jugador extends Criatura implements Subject {
             } else {
                 sprite = Sprite.ARRIBA0;
             }
+            if(teclado.ataque){
+                if(salud <= SALUD_CRITICA) {
+                    sprite = Sprite.ARRIBAGOLPE_B;
+                }else{
+                    sprite = Sprite.ARRIBAGOLPE;
+                }
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
                     if(salud <= SALUD_CRITICA) {
@@ -233,6 +240,13 @@ public class Jugador extends Criatura implements Subject {
                 sprite = Sprite.ABAJO0_B;
             } else {
                 sprite = Sprite.ABAJO0;
+            }
+            if(teclado.ataque){
+                if(salud <= SALUD_CRITICA) {
+                    sprite = Sprite.ABAJOGOLPE_B;
+                }else{
+                    sprite = Sprite.ABAJOGOLPE;
+                }
             }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
@@ -258,6 +272,13 @@ public class Jugador extends Criatura implements Subject {
             } else {
                 sprite = Sprite.IZQUIERDA0;
             }
+            if(teclado.ataque){
+                if(salud <= SALUD_CRITICA) {
+                    sprite = Sprite.IZQUIERDAGOLPE_B;
+                }else{
+                    sprite = Sprite.IZQUIERDAGOLPE;
+                }
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
                     if(salud <= SALUD_CRITICA) {
@@ -282,15 +303,24 @@ public class Jugador extends Criatura implements Subject {
             } else {
                 sprite = Sprite.DERECHA0;
             }
+            if(teclado.ataque){
+                if(salud <= SALUD_CRITICA) {
+                    sprite = Sprite.DERECHAGOLPE_B;
+                }else{
+                    sprite = Sprite.DERECHAGOLPE;
+                }
+            }
             if(enMovimiento) {
                 if(animacion % 50 > 25) {
                     if(salud <= SALUD_CRITICA) {
+                        //if(teclado.ataque) sprite = Sprite.DERECHAGOLPE_B;
                         sprite = Sprite.DERECHA1_B;
                     } else {
                         sprite = Sprite.DERECHA1;
                     }
                 } else {
                     if(salud <= SALUD_CRITICA) {
+                        //if(teclado.ataque) sprite = Sprite.DERECHAGOLPE;
                         sprite = Sprite.DERECHA2_B;
                     } else {
                         sprite = Sprite.DERECHA2;
@@ -355,6 +385,13 @@ public class Jugador extends Criatura implements Subject {
      */
     public void disminuirResistencia() {
         resistencia -= 5;
+    }
+
+    public boolean moving() {
+        if(teclado.arriba || teclado.abajo || teclado.derecha || teclado.izquierda){
+            return true;
+        }
+        return false;
     }
 
     // Implementación del Patron Observer - Sujeto Concreto
