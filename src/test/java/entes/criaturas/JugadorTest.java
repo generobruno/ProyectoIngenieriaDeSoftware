@@ -4,10 +4,7 @@ import control.Teclado;
 import graficos.Sprite;
 import graficos.observer.Hud;
 import mapa.MapaGenerado;
-//import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -102,6 +99,36 @@ class JugadorTest {
         assertEquals(jugador.observers.contains(h),false);
 
     }
+
+    @Test
+    void TestAtaque() {
+        escenario();
+        teclado.testTeclado(6);
+        jugador.actualizar();
+        assertTrue(jugador.getResistencia() == 595);
+    }
+
+    @Test
+    void TestNoAtacar() {
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(6);
+        jugador.actualizar();
+        assertTrue(jugador.getResistencia() == 600);
+    }
+
+//    @Test
+//    void TestNoCorrer() {
+//        escenario();
+//        while (jugador.getResistencia() == 0){
+//            jugador.disminuirResistencia();
+//        }
+//        teclado.testTeclado(1);
+//        teclado.testTeclado(5);
+//        jugador.actualizar();
+//        System.out.println(jugador.getPosicionY());
+//        assertTrue(jugador.getPosicionY() == -4);
+//    }
 /*
     @Test
     void TestNotificar(){
@@ -135,13 +162,5 @@ class JugadorTest {
         assertNotEquals(jugador.getResistencia(),h.getEstamina());
 
 
-
-    }
-   @Test
-   void TestAtaque() {
-       escenario();
-        teclado.testTeclado(1);
-       jugador.actualizar();
-       assertTrue(jugador.getPosicionY() == -4);
     }*/
 }

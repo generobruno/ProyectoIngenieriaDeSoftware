@@ -6,7 +6,7 @@ import graficos.Sprite;
 
 public class Viale extends Enemigo {
     // Hoja de sprites de Zombies
-    private static HojaSprites hojaZombie;
+    private static HojaSprites hojaViale;
 
     /**
      * Constructor de la clase Zombie
