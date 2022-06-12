@@ -75,7 +75,7 @@ class JugadorTest {
         escenario();
         teclado.testTeclado(1);
         teclado.testTeclado(5);
-        for(int i = 0; i <= 599; i++){
+        for(int i = 1; i <= 600; i++){
             jugador.actualizar();
         }
         assertTrue(jugador.getResistencia() == 0);
@@ -117,50 +117,91 @@ class JugadorTest {
         assertTrue(jugador.getResistencia() == 600);
     }
 
-//    @Test
-//    void TestNoCorrer() {
-//        escenario();
-//        while (jugador.getResistencia() == 0){
-//            jugador.disminuirResistencia();
-//        }
-//        teclado.testTeclado(1);
-//        teclado.testTeclado(5);
-//        jugador.actualizar();
-//        System.out.println(jugador.getPosicionY());
-//        assertTrue(jugador.getPosicionY() == -4);
-//    }
-/*
     @Test
-    void TestNotificar(){
+    void TestResistenciaMax() {
         escenario();
-        Hud h = new Hud(jugador);
-        jugador.agregarObs(h);
-        assertEquals(jugador.getExp(),h.getExp());
-        assertEquals(jugador.getNivel(),h.getNivel());
-        assertEquals(jugador.getResistencia(),h.getEstamina());
-        assertEquals(jugador.getSalud(),h.getSalud());
+        assertTrue(jugador.getResistencia() == 600);
+    }
 
-        teclado.arriba = true;
-        teclado.correr = true;
-        try{
-            TimeUnit.MILLISECONDS.sleep(600);
-        }catch(InterruptedException e){
-            e.printStackTrace();
+    @Test
+    void TestRecuperacionResistencia() {
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(5);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
         }
-        teclado.correr = false;
-        teclado.arriba = false;
-
-        assertEquals(jugador.getResistencia(),h.getEstamina());
-
-        jugador.quitarObs(h);
-        try{
-            TimeUnit.MILLISECONDS.sleep(600);
-        }catch(InterruptedException e){
-            e.printStackTrace();
+        teclado.testTeclado(6);
+        teclado.testTeclado(11);
+        for(int i = 1; i <= 60; i++){
+            jugador.actualizar();
         }
+        assertTrue(jugador.getRecuperacion() == 121);
+    }
 
-        assertNotEquals(jugador.getResistencia(),h.getEstamina());
+    @Test
+    void TestLimiteDeResistencia() {
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(5);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        teclado.testTeclado(7);
+        teclado.testTeclado(11);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        assertTrue(jugador.getResistencia() == 600);
+    }
 
+    @Test
+    void TestSinResistenciaAtaque(){
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(5);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        teclado.testTeclado(7);
+        teclado.testTeclado(11);
+        teclado.testTeclado(6);
+        jugador.actualizar();
+        assertTrue(jugador.getRecuperado() == false);
 
-    }*/
+    }
+
+//    @Test
+//    void TestNotificar(){
+//        escenario();
+//        Hud h = new Hud(jugador);
+//        jugador.agregarObs(h);
+//        assertEquals(jugador.getExp(),h.getExp());
+//        assertEquals(jugador.getNivel(),h.getNivel());
+//        assertEquals(jugador.getResistencia(),h.getEstamina());
+//        assertEquals(jugador.getSalud(),h.getSalud());
+//
+//        teclado.arriba = true;
+//        teclado.correr = true;
+//        try{
+//            TimeUnit.MILLISECONDS.sleep(600);
+//        }catch(InterruptedException e){
+//            e.printStackTrace();
+//        }
+//        teclado.correr = false;
+//        teclado.arriba = false;
+//
+//        assertEquals(jugador.getResistencia(),h.getEstamina());
+//
+//        jugador.quitarObs(h);
+//        try{
+//            TimeUnit.MILLISECONDS.sleep(600);
+//        }catch(InterruptedException e){
+//            e.printStackTrace();
+//        }
+//
+//        assertNotEquals(jugador.getResistencia(),h.getEstamina());
+//
+//
+//    }
 }

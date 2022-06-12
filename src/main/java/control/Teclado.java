@@ -84,6 +84,24 @@ public final class Teclado implements KeyListener {
             case 6:
                 ataque = true;
                 break;
+            case 7:
+                arriba = false;
+                break;
+            case 8:
+                abajo = false;
+                break;
+            case 9:
+                izquierda = false;
+                break;
+            case 10:
+                derecha = false;
+                break;
+            case 11:
+                correr = false;
+                break;
+            case 12:
+                ataque = false;
+                break;
         }
     }
 

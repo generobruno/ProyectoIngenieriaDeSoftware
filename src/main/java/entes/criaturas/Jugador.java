@@ -387,6 +387,13 @@ public class Jugador extends Criatura implements Subject {
         resistencia -= 5;
     }
 
+    public int getRecuperacion(){
+        return this.recuperacion;
+    }
+
+    public boolean getRecuperado() {
+        return this.recuperado;
+    }
     public boolean moving() {
         if(teclado.arriba || teclado.abajo || teclado.derecha || teclado.izquierda){
             return true;
