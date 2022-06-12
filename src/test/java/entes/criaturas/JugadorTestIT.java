@@ -81,5 +81,46 @@ class JugadorTestIT {
         teclado.testTeclado(6);
         jugador.actualizar();
         assertTrue(jugador.getResistencia() == 600);
+
+        escenario();
+        assertTrue(jugador.getResistencia() == 600);
+
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(5);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        teclado.testTeclado(6);
+        teclado.testTeclado(11);
+        for(int i = 1; i <= 60; i++){
+            jugador.actualizar();
+        }
+        assertTrue(jugador.getRecuperacion() == 121);
+
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(5);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        teclado.testTeclado(7);
+        teclado.testTeclado(11);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        assertTrue(jugador.getResistencia() == 600);
+
+        escenario();
+        teclado.testTeclado(1);
+        teclado.testTeclado(5);
+        for(int i = 1; i <= 600; i++){
+            jugador.actualizar();
+        }
+        teclado.testTeclado(7);
+        teclado.testTeclado(11);
+        teclado.testTeclado(6);
+        jugador.actualizar();
+        assertTrue(jugador.getRecuperado() == false);
     }
 }
