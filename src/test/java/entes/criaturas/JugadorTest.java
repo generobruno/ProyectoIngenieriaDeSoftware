@@ -171,6 +171,19 @@ class JugadorTest {
 
     }
 
+    @Test
+    void TestSaludMax() {
+        escenario();
+        assertTrue(jugador.getVidaMax() == 1000);
+    }
+
+    @Test
+    void TestSaludDisminuida() {
+        escenario();
+        jugador.actualizar();
+        assertTrue(jugador.getSalud() < 1000);
+    }
+
 //    @Test
 //    void TestNotificar(){
 //        escenario();

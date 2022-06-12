@@ -122,5 +122,12 @@ class JugadorTestIT {
         teclado.testTeclado(6);
         jugador.actualizar();
         assertTrue(jugador.getRecuperado() == false);
+
+        escenario();
+        assertTrue(jugador.getVidaMax() == 1000);
+
+        escenario();
+        jugador.actualizar();
+        assertTrue(jugador.getSalud() < 1000);
     }
 }
