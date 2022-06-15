@@ -29,8 +29,25 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>ssh-repository</id>
+            <url>scpexe://https://github.com/generobruno/ProyectoIngenieriaDeSoftware</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <finalName>ProyectoMenta</finalName>
+
+        <extensions>
+            <!-- Enabling the use of SSH -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>3.5.0</version>
+            </extension>
+        </extensions>
+
         <plugins>
 
             <plugin>
