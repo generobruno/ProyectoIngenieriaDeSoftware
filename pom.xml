@@ -79,29 +79,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0-M2</version>
-                <executions>
-                    <execution>
-                        <id>deploy-file</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy-file</goal>
-                        </goals>
-                        <configuration>
-                            <file>target/ProyectoMenta-jar-with-dependencies.jar</file>
-                            <url>https://github.com/generobruno/ProyectoIngenieriaDeSoftware</url>
-                            <groupId>org.proyectomenta.maven</groupId>
-                            <artifactId>TrabajoFinalMentaTech</artifactId>
-                            <version>1.0-SNAPSHOT</version>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
 
