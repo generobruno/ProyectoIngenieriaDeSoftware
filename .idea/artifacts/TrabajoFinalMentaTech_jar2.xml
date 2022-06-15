@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TrabajoFinalMentaTech:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/TrabajoFinalMentaTech_jar2</output-path>
+    <root id="archive" name="TrabajoFinalMentaTech.jar">
+      <element id="module-output" name="TrabajoFinalMentaTech" />
+    </root>
+  </artifact>
+</component>
