@@ -9,7 +9,7 @@ esté en un punto crítico, la adrenalina hace que se ponga en un modo Berserk y
 resistencia al efectuar golpes.
 
 Para poder jugar debe descargar el ejecutable "ProyectoMenta.exe" y ejecutarlo. Además debe cumplir
-con los requisitos del sistema. Alternativamente, puede descargar el mismo archivo en el [Drive](https://drive.google.com/drive/folders/1BW4HFX6kANG4QYko7FHFJmRPdNadJzF1?usp=sharing) del proyecto.
+con los requisitos del sistema. Alternativamente, puede descargar el mismo archivo en el [Drive del proyecto](https://drive.google.com/drive/folders/1BW4HFX6kANG4QYko7FHFJmRPdNadJzF1?usp=sharing).
 
 ### Requisitos de sistema:
 1. Se debe tener instalada la versión 8 de Java o superior. [Descargar última versión](https://www.java.com/es/download/)
