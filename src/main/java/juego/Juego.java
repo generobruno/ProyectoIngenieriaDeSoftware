@@ -6,10 +6,11 @@ import entes.criaturas.Viale;
 import graficos.Pantalla;
 import graficos.Sprite;
 import graficos.observer.Hud;
+import graficos.observer.Inventario;
 import mapa.Mapa;
 import mapa.MapaCargado;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -73,6 +74,12 @@ public class Juego extends Canvas implements Runnable{
     // HUD
     private static Hud hud;
 
+    // Inventario
+    private static Inventario inventario;
+
+    // Estados del Juego
+    private String  gameState;
+
     /**
      * Método Juego:
      * Constructor de la clase Juego:
@@ -95,9 +102,13 @@ public class Juego extends Canvas implements Runnable{
         jugador = new Jugador(mapa, teclado,992,1900, Sprite.ABAJO0);
         // Creamos al enemigo final
         enemigofinal = new Viale(1,"Viale",800);
+        //Inicializamos el estado del juego
+        gameState = "run";
 
         // Creamos el HUD del jugador;
         hud = new Hud(jugador);
+        // Creamos en Inventario
+        inventario = new Inventario(jugador);
         // Agregamos el HUD como Observer de Jugador
         jugador.agregarObs(hud);
         // Creamos la ventana
@@ -174,10 +185,17 @@ public class Juego extends Canvas implements Runnable{
      */
     private void actualizar(){
         teclado.actualizar();
-
+        if(teclado.inventario && gameState != "inventario")
+        {
+            gameState = "inventario";
+            jugador.agregarObs(inventario);
+        }
+        else if(teclado.enter && gameState != "run") {
+            jugador.quitarObs(inventario);
+            gameState = "run";
+        }
         jugador.actualizar();
         enemigofinal.actualizar();
-
         // Acciones que se toman dependiendo de las teclas presionadas
         if (teclado.salir){
             System.exit(0);
@@ -216,19 +234,20 @@ public class Juego extends Canvas implements Runnable{
 
         // Se le pasa la imagen que debe dibujar
         g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
-        g.setColor(Color.white);
-        g.drawString(CONTADOR_APS,10,20);
-        g.drawString(CONTADOR_FPS,10,35);
-        g.drawString("X: " + jugador.getPosicionX(),10,50);
-        g.drawString("Y: " + jugador.getPosicionY(),10,65);
 
-
-        // Se muestra el HUD
-        hud.displayInfo(g);
+        hud.displayInfo(g); // Se muestra el HUD
         // Luego de dibujar, se libera la memoria
+
+        switch(gameState) {
+            case "inventario" -> inventario.show(g,CONTADOR_FPS,ventana.getHeight(),ventana.getWidth()); // Se muestra el Inventario
+        }
         g.dispose();
 
         estrategia.show();
+
+
+
+
 
         fps++;
     }
