@@ -185,14 +185,14 @@ public class Juego extends Canvas implements Runnable{
      */
     private void actualizar(){
         teclado.actualizar();
-        if(teclado.inventario && gameState != "inventario")
+        if(teclado.enter && gameState != "run") {
+            jugador.quitarObs(inventario);
+            gameState = "run";
+        }
+        else if(teclado.inventario && gameState != "inventario")
         {
             gameState = "inventario";
             jugador.agregarObs(inventario);
-        }
-        else if(teclado.enter && gameState != "run") {
-            jugador.quitarObs(inventario);
-            gameState = "run";
         }
         jugador.actualizar();
         enemigofinal.actualizar();

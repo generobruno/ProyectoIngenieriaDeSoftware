@@ -1,4 +1,4 @@
-# ProyectoIngenieriaDeSoftware
+# Proyecto Ingenieria De Software
 En este repositorio se desarrolla el proyecto para la materia de Ingeniería de Software - Grupo MentaTech.
 
 El programa desarrollado consta de una demo técnica de un juego de rol en el que el usuario
@@ -20,6 +20,7 @@ con los requisitos del sistema.
 1. Movimiento: Teclas W (arriba), A (izquierda), S (abajo), D (derecha)
 2. Ataque: Tecla L
 3. Correr: Tecla Shift (Mientras se mueve)
-4. Salir: Tecla Esc
+4. Inventario: Tecla I para abrir, tecla Enter para cerrar
+5. Salir: Tecla Esc
 
 ## ¡Gracias por probar nuestro proyecto!

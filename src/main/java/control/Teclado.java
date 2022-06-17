@@ -44,7 +44,7 @@ public final class Teclado implements KeyListener {
         ataque = teclas[KeyEvent.VK_L];
 
         enter = teclas[KeyEvent.VK_ENTER];
-        inventario = teclas[KeyEvent.VK_E];
+        inventario = teclas[KeyEvent.VK_I];
         salir = teclas[KeyEvent.VK_ESCAPE];
     }
 
