@@ -71,6 +71,10 @@ public class Jugador extends Criatura implements Subject {
             salud--;
             notificar();
         }
+        // Tecla para resetear la vida
+        if(teclado.resetSalud) {
+            salud = 1000;
+        }
         // Fin del código de muestra
 
         // Movimiento del jugador

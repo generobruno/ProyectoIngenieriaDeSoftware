@@ -29,6 +29,8 @@ public final class Teclado implements KeyListener {
     public boolean enter;
     public boolean salir;
 
+    public boolean resetSalud;
+
     /**
      * Método actualizar:
      * Actualiza el estado de una tecla en el array
@@ -46,6 +48,7 @@ public final class Teclado implements KeyListener {
         enter = teclas[KeyEvent.VK_ENTER];
         inventario = teclas[KeyEvent.VK_I];
         salir = teclas[KeyEvent.VK_ESCAPE];
+        resetSalud = teclas[KeyEvent.VK_O];
     }
 
     // Reconoce el pulsado constante de una tecla
