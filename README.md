@@ -1,6 +1,8 @@
 # Proyecto Ingenieria De Software
 En este repositorio se desarrolla el proyecto para la materia de Ingeniería de Software - Grupo MentaTech.
 
+![image](https://github.com/generobruno/ProyectoIngenieriaDeSoftware/assets/36767810/ab176ed9-954f-484f-ac4f-7072e9238a10)
+
 El programa desarrollado consta de una demo técnica de un juego de rol en el que el usuario
 puede controlar a un jugador, haciendo que este se mueva por el mapa. El jugador puede moverse 
 con velocidad normal (o correr) y atacar, pero consumirá resistencia y cuando esta llegue a
